@@ -18,9 +18,11 @@ export const welcome = () => {
   const loginButton = document.createElement('button');
   loginButton.setAttribute('id', 'log-in');
   loginButton.setAttribute('class', 'register-button');
+  loginButton.textContent = 'Log In';
   const signupButton = document.createElement('button');
   signupButton.setAttribute('id', 'sign-up');
   signupButton.setAttribute('class', 'register-button');
+  signupButton.textContent = 'Sign up';
   // appends the buttons to the main tag
   mainWelcome.append(loginButton, signupButton);
   // appends the header and main to section
