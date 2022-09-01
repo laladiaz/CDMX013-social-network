@@ -1,5 +1,8 @@
-// Este es el punto de entrada de tu aplicacion
-
-import { myFunction } from './lib/index.js';
-
-myFunction();
+import { welcome } from './components/welcome.js';
+// define root as the div root written in index.html
+const root = document.getElementById('root');
+// define the object routes for routing
+/* const routes = {
+  '/': welcome,
+}; */
+root.appendChild(welcome());
