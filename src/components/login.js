@@ -68,7 +68,12 @@ export const login = () => {
 
   // click listener for the emailLoginButton to show the loginModal
   emailLoginButton.addEventListener('click', () => {
-    sectionLogin.appendChild(loginModal);
+    loginModal.showModal();
+  });
+  
+  cancelLoginButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    loginModal.close();
   });
   sectionLogin.append(headerLogin, mainLogin);
   return sectionLogin;
