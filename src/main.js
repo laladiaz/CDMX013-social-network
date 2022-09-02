@@ -11,7 +11,7 @@ export const onNavigate = (pathname) => {
     pathname,
     window.location.origin + pathname,
   );
-  root.appendChild(welcome());
+  root.appendChild(routes[pathname]());
 };
 
 const component = routes[window.location.pathname];
