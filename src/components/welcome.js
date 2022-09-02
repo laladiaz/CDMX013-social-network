@@ -52,7 +52,7 @@ export const welcome = () => {
 
   // adds dialog and form for a login modal
   const loginModal = document.createElement('dialog');
-  loginModal.setAttribute('class', 'login-modal');
+  loginModal.setAttribute('id', 'login-modal');
   const formLoginModal = document.createElement('form');
   formLoginModal.setAttribute('id', 'form-login-modal');
   const emailLoginInput = document.createElement('input');
@@ -76,9 +76,17 @@ export const welcome = () => {
   // appends the form to the dialog tag
   loginModal.appendChild(formLoginModal);
 
+  // appends the dialog to section welcome
+  sectionWelcome.appendChild(loginModal);
+
   // click listener for the emailLoginButton to show the loginModal
   emailLoginButton.addEventListener('click', () => {
-    sectionWelcome.appendChild(loginModal);
+    loginModal.showModal();
+  });
+
+  cancelLoginButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    loginModal.close();
   });
 
   // appends the header and main to section
