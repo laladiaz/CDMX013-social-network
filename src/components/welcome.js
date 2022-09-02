@@ -1,3 +1,5 @@
+// import { onNavigate } from '../main.js';
+
 export const welcome = () => {
   // section welcome
   const sectionWelcome = document.createElement('section');
@@ -28,4 +30,5 @@ export const welcome = () => {
   // appends the header and main to section
   sectionWelcome.append(headerWelcome, mainWelcome);
   return sectionWelcome;
+  // adds the buttons for login with email or google
 };
