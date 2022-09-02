@@ -22,9 +22,9 @@ export const signup = () => {
 
   // adds the buttons for signup with email or google
   const signupButtonsDiv = document.createElement('div');
-  signupButtonsDiv.setAttribute('class', 'signup-buttons-div');
+  signupButtonsDiv.setAttribute('class', 'register-buttons-div');
   const emailSignupButton = document.createElement('button');
-  emailSignupButton.setAttribute('id', 'email-login-button');
+  emailSignupButton.setAttribute('class', 'email-button');
   emailSignupButton.textContent = 'Continue with email';
   const googleSignupButton = document.createElement('div');
   googleSignupButton.setAttribute('id', 'buttonDiv');
@@ -40,7 +40,7 @@ export const signup = () => {
 
   // adds dialog and form for a signup modal
   const signupModal = document.createElement('dialog');
-  signupModal.setAttribute('id', 'signup-modal');
+  signupModal.setAttribute('class', 'signup-modal');
   const formSignupModal = document.createElement('form');
   formSignupModal.setAttribute('id', 'form-signup-modal');
   const emailSignupInput = document.createElement('input');
@@ -52,10 +52,12 @@ export const signup = () => {
   passSignupInput.setAttribute('type', 'password');
   passSignupInput.setAttribute('class', 'signup-input');
   const cancelSignupButton = document.createElement('button');
-  cancelSignupButton.setAttribute('class', 'modal-signup-button');
+  cancelSignupButton.setAttribute('class', 'modal-button');
+  cancelSignupButton.setAttribute('id', 'cancel-signup-modal');
   cancelSignupButton.textContent = 'Back';
   const submitSignupButton = document.createElement('button');
-  submitSignupButton.setAttribute('class', 'modal-signup-button');
+  submitSignupButton.setAttribute('class', 'modal-button');
+  submitSignupButton.setAttribute('id', 'submit-signup-modal');
   submitSignupButton.textContent = 'Enter';
 
   // appends the buttons and input text areas to form
