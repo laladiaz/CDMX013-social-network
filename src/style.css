@@ -1,0 +1,49 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    min-height: 55rem;
+    font-size: 12px;
+    font-family: sans-serif;
+    background-color: #E8DEEC;
+}
+
+body, section {
+    display: grid;
+    grid-template-columns: repeat(3, 10.4rem);
+    grid-template-rows: repeat(6, 9.26rem);
+}
+
+.register-header {
+    margin-top: 30%;
+    grid-row: span 3;
+    grid-column: span 3;
+}
+
+.register-main {
+    grid-column: span 3;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+.logo-booknet {
+    margin-left: 20%;
+    width: 19.4rem;
+    height: 14.16rem;
+}
+
+.register-button {
+    border: none;
+    padding: 5px;
+    width: 25%;
+    border-radius: 20px;
+    background-color: #FFCB05;
+}
+
+#log-in {
+    background-color: #EA9811;
+    color: white;
+}
