@@ -1,19 +1,18 @@
-* {
+html {
+    font-size: 12px;
+    font-family: sans-serif;
+    background-color: #E8DEEC;
+    overflow-x: hidden;
+    width: 100%;
     padding: 0;
     margin: 0;
 }
 
-html {
-    min-height: 55rem;
-    font-size: 12px;
-    font-family: sans-serif;
-    background-color: #E8DEEC;
-}
-
 body, section {
     display: grid;
-    grid-template-columns: repeat(3, 10.4rem);
-    grid-template-rows: repeat(6, 9.26rem);
+    grid-template-columns: repeat(3, 8.1rem);
+    grid-template-rows: repeat(6, 7.26rem);
+    gap: 0.5rem;
 }
 
 .register-header {
@@ -30,16 +29,16 @@ body, section {
 }
 
 .logo-booknet {
-    margin-left: 20%;
+    margin-left: 12%;
     width: 19.4rem;
     height: 14.16rem;
 }
 
 .register-button {
     border: none;
-    padding: 5px;
+    padding: 2%;
     width: 25%;
-    border-radius: 20px;
+    border-radius: 8px;
     background-color: #FFCB05;
 }
 
