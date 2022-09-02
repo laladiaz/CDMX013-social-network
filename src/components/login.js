@@ -24,9 +24,9 @@ export const login = () => {
 
   // adds the buttons for login with email or google
   const loginButtonsDiv = document.createElement('div');
-  loginButtonsDiv.setAttribute('class', 'login-buttons-div');
+  loginButtonsDiv.setAttribute('class', 'register-buttons-div');
   const emailLoginButton = document.createElement('button');
-  emailLoginButton.setAttribute('id', 'email-login-button');
+  emailLoginButton.setAttribute('class', 'email-button');
   emailLoginButton.textContent = 'Continue with email';
   const googleLoginButton = document.createElement('div');
   googleLoginButton.setAttribute('id', 'buttonDiv');
@@ -51,10 +51,12 @@ export const login = () => {
   passLoginInput.setAttribute('type', 'password');
   passLoginInput.setAttribute('class', 'login-input');
   const cancelLoginButton = document.createElement('button');
-  cancelLoginButton.setAttribute('class', 'modal-login-button');
+  cancelLoginButton.setAttribute('id', 'cancel-login-modal');
+  cancelLoginButton.setAttribute('class', 'modal-button');
   cancelLoginButton.textContent = 'Back';
   const submitLoginButton = document.createElement('button');
-  submitLoginButton.setAttribute('class', 'modal-login-button');
+  submitLoginButton.setAttribute('id', 'submit-login-modal');
+  submitLoginButton.setAttribute('class', 'modal-button');
   submitLoginButton.textContent = 'Enter';
   
   // appends the buttons and input text areas to form
@@ -70,7 +72,7 @@ export const login = () => {
   emailLoginButton.addEventListener('click', () => {
     loginModal.showModal();
   });
-  
+
   cancelLoginButton.addEventListener('click', (e) => {
     e.preventDefault();
     loginModal.close();
