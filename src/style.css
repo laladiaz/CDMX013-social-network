@@ -2,7 +2,7 @@ html {
     font-size: 12px;
     font-family: sans-serif;
     background-color: #E8DEEC;
-    overflow-x: hidden;
+    overflow: hidden;
     width: 100%;
     padding: 0;
     margin: 0;
@@ -15,13 +15,13 @@ body, section {
     gap: 0.5rem;
 }
 
-.register-header {
+.register-header, .login-header {
     margin-top: 30%;
     grid-row: span 3;
     grid-column: span 3;
 }
 
-.register-main {
+.register-main, .login-main {
     grid-column: span 3;
     display: flex;
     align-items: flex-start;
@@ -34,15 +34,76 @@ body, section {
     height: 14.16rem;
 }
 
-.register-button {
+.register-button, .modal-button {
     border: none;
     padding: 2%;
     width: 25%;
     border-radius: 8px;
+}
+
+.register-button {
     background-color: #FFCB05;
 }
 
 #log-in {
     background-color: #EA9811;
     color: white;
+}
+.login-main{
+    grid-row: span 3;
+}
+
+.register-buttons-div {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.email-button {
+    width: 240px;
+    height: 38px;
+    border: none;
+    background: white;
+    color: rgb(64 68 71);
+    border-radius: 3px;
+    margin-top: 1rem;
+}
+
+.login-modal, .signup-modal {
+    background: #89599B;
+    border: none;
+    color: white;
+    width: 100%;
+    height: 45%;
+    bottom: 0;
+}
+.login-input, .signup-input {
+    text-align: center;
+    width: 80%;
+    padding: 2%;
+    margin-left: 5%;
+    margin-top: 2%;
+    border: none;
+    text-decoration: none;
+    border-radius: 3px;
+}
+.login-input::placeholder, .signup-input::placeholder{
+text-align: center;
+}
+
+.modal-button {
+    margin: 3rem;
+}
+#cancel-login-modal, #cancel-signup-modal {
+    background: white;
+    color: red
+}
+#submit-login-modal {
+    background: #EA9811;
+    color: white;
+}
+#submit-signup-modal {
+    background: #FFCB05;
+}
+#form-login-modal {
+    margin-top: 18%;
 }

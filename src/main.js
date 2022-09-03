@@ -1,3 +1,4 @@
+import { login } from './components/login.js';
 import { signup } from './components/signup.js';
 import { welcome } from './components/welcome.js';
 // define root as the div root written in index.html
@@ -5,6 +6,7 @@ const root = document.getElementById('root');
 // define the object routes for routing
 const routes = {
   '/': welcome,
+  '/login': login,
   '/signup': signup,
 };
 export const onNavigate = (pathname) => {
