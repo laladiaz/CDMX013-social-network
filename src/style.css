@@ -104,6 +104,6 @@ text-align: center;
 #submit-signup-modal {
     background: #FFCB05;
 }
-#form-login-modal {
+#form-login-modal, #form-signup-modal {
     margin-top: 18%;
 }
