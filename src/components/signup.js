@@ -9,13 +9,18 @@ export const signup = () => {
   const headerSignup = document.createElement('header');
   headerSignup.setAttribute('class', 'register-header');
 
+  // login label
+  const Signuplabel = document.createElement('div');
+  Signuplabel.setAttribute('class', 'header-label');
+  Signuplabel.textContent = 'Sign Up';
+
   // logo of the welcome page
   const imgLogoSignup = document.createElement('img');
   imgLogoSignup.setAttribute('src', './img/Logo-BookNet.png');
   imgLogoSignup.setAttribute('class', 'logo-booknet');
 
   // appends img to header
-  headerSignup.appendChild(imgLogoSignup);
+  headerSignup.append(imgLogoSignup, Signuplabel);
 
   // main of signup
   const mainSignup = document.createElement('main');
