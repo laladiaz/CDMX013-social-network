@@ -4,21 +4,24 @@ html {
     background-color: #E8DEEC;
     overflow: hidden;
     width: 100%;
-    padding: 0;
-    margin: 0;
 }
 
 body, section {
     display: grid;
-    grid-template-columns: repeat(3, 8.1rem);
-    grid-template-rows: repeat(6, 7.26rem);
+    grid-template-columns: repeat(3, 8.54rem);
+    grid-template-rows: repeat(6, 7.45rem);
     gap: 0.5rem;
+    padding: 0;
+    margin: 0;
 }
 
 .register-header, .login-header {
-    margin-top: 30%;
+    display: flex; 
     grid-row: span 3;
     grid-column: span 3;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .register-main, .login-main {
@@ -27,9 +30,18 @@ body, section {
     align-items: flex-start;
     justify-content: space-evenly;
 }
-
+.header-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    margin: 0;
+    color: white;
+    background: #89599B;
+    width: 100%;
+    height: 4rem;
+}
 .logo-booknet {
-    margin-left: 12%;
     width: 19.4rem;
     height: 14.16rem;
 }
