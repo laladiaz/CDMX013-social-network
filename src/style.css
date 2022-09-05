@@ -93,10 +93,15 @@ text-align: center;
 .modal-button {
     margin: 3rem;
 }
-#cancel-login-modal, #cancel-signup-modal {
+#cancel-login-modal, #cancel-signup-modal, #backButtonSignup, #backButtonLogin {
     background: white;
     color: red
 }
+
+#backButtonSignup, #backButtonLogin {
+    margin-left: 40%;
+}
+
 #submit-login-modal {
     background: #EA9811;
     color: white;
