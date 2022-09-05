@@ -1,4 +1,5 @@
 import { googleButton } from './googleButton.js';
+import { onNavigate } from '../main.js';
 
 export const signup = () => {
   const sectionSignup = document.createElement('section');
@@ -74,6 +75,11 @@ export const signup = () => {
 
   // appends the dialog to signup section
   mainSignup.appendChild(signupModal);
+
+  // click listener  for the back button
+  backButton.addEventListener('click', () => {
+    onNavigate('/');
+  });
 
   // click listener for the emailLoginButton to show the loginModal
   emailSignupButton.addEventListener('click', () => {
