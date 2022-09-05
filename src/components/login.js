@@ -1,4 +1,4 @@
-// import { onNavigate } from '../main.js';
+import { onNavigate } from '../main.js';
 import { googleButton } from './googleButton.js';
 
 export const login = () => {
@@ -73,6 +73,11 @@ export const login = () => {
 
   // appends the modal and buttons to main
   mainLogin.append(loginButtonsDiv, loginModal);
+
+  // click listener for the back button to return to welcome
+  backButton.addEventListener('click', () => {
+    onNavigate('/');
+  });
 
   // click listener for the emailLoginButton to show the loginModal
   emailLoginButton.addEventListener('click', () => {
