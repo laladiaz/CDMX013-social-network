@@ -1,5 +1,4 @@
 import { onNavigate } from '../main.js';
-import { googleButton } from './googleButton.js';
 
 export const login = () => {
   // section login
@@ -32,18 +31,16 @@ export const login = () => {
   loginButtonsDiv.setAttribute('class', 'register-buttons-div');
   const emailLoginButton = document.createElement('button');
   emailLoginButton.setAttribute('class', 'email-button');
-  emailLoginButton.textContent = 'Continue with email';
-  const googleLoginButton = document.createElement('div');
-  googleLoginButton.setAttribute('id', 'buttonDiv');
+  emailLoginButton.textContent = 'Log in with email';
+  const googleLoginButton = document.createElement('button');
+  googleLoginButton.setAttribute('id', 'google-button');
+  googleLoginButton.textContent = 'Log in with google';
 
   // adds the back button
   const backButton = document.createElement('button');
   backButton.setAttribute('class', 'modal-button');
   backButton.setAttribute('id', 'backButtonLogin');
   backButton.textContent = ('Back');
-
-  // appends the googleButton module to the google login button
-  googleLoginButton.append(googleButton());
 
   // adds the buttons for login to their div
   loginButtonsDiv.append(backButton, emailLoginButton, googleLoginButton);

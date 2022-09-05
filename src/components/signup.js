@@ -1,4 +1,3 @@
-import { googleButton } from './googleButton.js';
 import { onNavigate } from '../main.js';
 
 export const signup = () => {
