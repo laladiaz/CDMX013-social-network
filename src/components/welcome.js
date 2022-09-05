@@ -1,4 +1,4 @@
-// import { onNavigate } from '../main.js';
+import { onNavigate } from '../main.js';
 
 export const welcome = () => {
   // section welcome
@@ -33,6 +33,14 @@ export const welcome = () => {
 
   // appends the buttons to the main tag
   mainWelcome.append(loginButton, signupButton);
+
+  // adds event listener to login and signup buttons
+  loginButton.addEventListener('click', () => {
+    onNavigate('/login');  
+  });
+  signupButton.addEventListener('click', () => {
+    onNavigate('/signup');  
+  });
 
   // appends the header and main to section
   sectionWelcome.append(headerWelcome, mainWelcome);

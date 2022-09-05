@@ -31,11 +31,17 @@ export const login = () => {
   const googleLoginButton = document.createElement('div');
   googleLoginButton.setAttribute('id', 'buttonDiv');
 
+  // adds the back button
+  const backButton = document.createElement('button');
+  backButton.setAttribute('class', 'modal-button');
+  backButton.setAttribute('id', 'backButtonLogin');
+  backButton.textContent = ('Back');
+
   // appends the googleButton module to the google login button
   googleLoginButton.append(googleButton());
 
   // adds the buttons for login to their div
-  loginButtonsDiv.append(emailLoginButton, googleLoginButton);
+  loginButtonsDiv.append(backButton, emailLoginButton, googleLoginButton);
 
   // adds dialog and form for a login modal
   const loginModal = document.createElement('dialog');
