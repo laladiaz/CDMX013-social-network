@@ -29,6 +29,12 @@ export const signup = () => {
   const googleSignupButton = document.createElement('div');
   googleSignupButton.setAttribute('id', 'buttonDiv');
 
+  // adds the back button
+  const backButton = document.createElement('button');
+  backButton.setAttribute('class', 'modal-button');
+  backButton.setAttribute('id', 'backButtonSignup');
+  backButton.textContent = ('Back');
+
   // appends the googleButton module to the google signup button
   googleSignupButton.append(googleButton());
 
@@ -36,7 +42,7 @@ export const signup = () => {
   mainSignup.appendChild(signupButtonsDiv);
 
   // adds the buttons for signup to their div
-  signupButtonsDiv.append(emailSignupButton, googleSignupButton);
+  signupButtonsDiv.append(backButton, emailSignupButton, googleSignupButton);
 
   // adds dialog and form for a signup modal
   const signupModal = document.createElement('dialog');
