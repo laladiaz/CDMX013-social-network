@@ -30,18 +30,16 @@ export const signup = () => {
   signupButtonsDiv.setAttribute('class', 'register-buttons-div');
   const emailSignupButton = document.createElement('button');
   emailSignupButton.setAttribute('class', 'email-button');
-  emailSignupButton.textContent = 'Continue with email';
-  const googleSignupButton = document.createElement('div');
-  googleSignupButton.setAttribute('id', 'buttonDiv');
+  emailSignupButton.textContent = 'Sign up with email';
+  const googleSignupButton = document.createElement('button');
+  googleSignupButton.setAttribute('id', 'google-button');
+  googleSignupButton.textContent = 'Sign up with google';
 
   // adds the back button
   const backButton = document.createElement('button');
   backButton.setAttribute('class', 'modal-button');
   backButton.setAttribute('id', 'backButtonSignup');
   backButton.textContent = ('Back');
-
-  // appends the googleButton module to the google signup button
-  googleSignupButton.append(googleButton());
 
   // appends the signup div in main
   mainSignup.appendChild(signupButtonsDiv);
