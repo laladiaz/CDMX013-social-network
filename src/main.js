@@ -1,7 +1,8 @@
 import { login } from './components/login.js';
 import { signup } from './components/signup.js';
 import { welcome } from './components/welcome.js';
-import {app} from './lib/config.js';
+import { app } from './lib/config.js';
+
 console.log(app);
 // define root as the div root written in index.html
 const root = document.getElementById('root');
