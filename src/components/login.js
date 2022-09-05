@@ -10,13 +10,18 @@ export const login = () => {
   const headerLogin = document.createElement('header');
   headerLogin.setAttribute('class', 'login-header');
 
+  // login label
+  const Loginlabel = document.createElement('div');
+  Loginlabel.setAttribute('class', 'header-label');
+  Loginlabel.textContent = 'Log In';
+
   // logo of the login page
   const imgLogoLogin = document.createElement('img');
   imgLogoLogin.setAttribute('src', './img/Logo-BookNet.png');
   imgLogoLogin.setAttribute('class', 'logo-booknet');
 
   // appends img to header
-  headerLogin.appendChild(imgLogoLogin);
+  headerLogin.append(imgLogoLogin, Loginlabel);
 
   // main of login
   const mainLogin = document.createElement('main');
