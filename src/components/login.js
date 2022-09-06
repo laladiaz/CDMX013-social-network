@@ -30,11 +30,9 @@ export const login = () => {
   const loginButtonsDiv = document.createElement('div');
   loginButtonsDiv.setAttribute('class', 'register-buttons-div');
   const emailLoginButton = document.createElement('button');
-  emailLoginButton.setAttribute('class', 'email-button');
-  emailLoginButton.textContent = 'Log in with email';
+  emailLoginButton.setAttribute('id', 'email-button');
   const googleLoginButton = document.createElement('button');
   googleLoginButton.setAttribute('id', 'google-button');
-  googleLoginButton.textContent = 'Log in with google';
 
   // adds the back button
   const backButton = document.createElement('button');

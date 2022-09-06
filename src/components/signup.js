@@ -29,11 +29,9 @@ export const signup = () => {
   const signupButtonsDiv = document.createElement('div');
   signupButtonsDiv.setAttribute('class', 'register-buttons-div');
   const emailSignupButton = document.createElement('button');
-  emailSignupButton.setAttribute('class', 'email-button');
-  emailSignupButton.textContent = 'Sign up with email';
+  emailSignupButton.setAttribute('id', 'email-button');
   const googleSignupButton = document.createElement('button');
   googleSignupButton.setAttribute('id', 'google-button');
-  googleSignupButton.textContent = 'Sign up with google';
 
   // adds the back button
   const backButton = document.createElement('button');
