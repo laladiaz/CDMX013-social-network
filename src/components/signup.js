@@ -73,6 +73,7 @@ export const signup = () => {
 
   // create paragrapho to show the error
   const paragraphError = document.createElement('p');
+  paragraphError.setAttribute('class', 'error-paragraph');
 
   // appends the buttons and input text areas to form
   // eslint-disable-next-line max-len
@@ -105,7 +106,7 @@ export const signup = () => {
     const signupPassword = passSignupInput.value;
 
     createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
-      .then((userCredential) => {
+      .then(() => {
         onNavigate('/home');
       })
       .catch((error) => {
