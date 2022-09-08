@@ -1,4 +1,8 @@
+/* eslint-disable import/no-unresolved */
+// import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
+// import { app } from '../lib/config.js';
+import { auth, createUser } from '../lib/auth.js';
 
 export const signup = () => {
   const sectionSignup = document.createElement('section');
@@ -90,6 +94,14 @@ export const signup = () => {
     e.preventDefault();
     signupModal.close();
   }); 
+
+  submitSignupButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const signupEmail = emailSignupInput.value;
+    const signupPassword = passSignupInput.value;
+
+    createUser(auth, signupEmail, signupPassword);
+  });
 
   sectionSignup.append(headerSignup, mainSignup);
   return sectionSignup;
