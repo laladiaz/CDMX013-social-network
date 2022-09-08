@@ -1,8 +1,8 @@
 /* eslint-disable import/no-unresolved */
-// import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
 // import { app } from '../lib/config.js';
-import { auth, createUser } from '../lib/auth.js';
+import { auth } from '../lib/auth.js';
 
 export const signup = () => {
   const sectionSignup = document.createElement('section');
@@ -71,8 +71,12 @@ export const signup = () => {
   submitSignupButton.setAttribute('id', 'submit-signup-modal');
   submitSignupButton.textContent = 'Enter';
 
+  // create paragrapho to show the error
+  const paragraphError = document.createElement('p');
+
   // appends the buttons and input text areas to form
-  formSignupModal.append(emailSignupInput, passSignupInput, cancelSignupButton, submitSignupButton);
+  // eslint-disable-next-line max-len
+  formSignupModal.append(emailSignupInput, passSignupInput, paragraphError, cancelSignupButton, submitSignupButton);
 
   // appends the form to the dialog tag
   signupModal.appendChild(formSignupModal);
@@ -100,7 +104,23 @@ export const signup = () => {
     const signupEmail = emailSignupInput.value;
     const signupPassword = passSignupInput.value;
 
-    createUser(auth, signupEmail, signupPassword);
+    createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
+      .then((userCredential) => {
+        onNavigate('/home');
+      })
+      .catch((error) => {
+        const invalidEmail = 'Please enter a valid email';
+        const usedEmail = 'Email already in use, please Log In';
+        const missingEmail = 'Please write an email'; 
+  
+        if (error.code === 'auth/invalid-email') {
+          paragraphError.innerText = invalidEmail;
+        } else if (error.code === 'auth/email-already-in-use') {
+          paragraphError.innerText = usedEmail;
+        } else if (error.code === 'auth/missing-email') {
+          paragraphError.innerText = missingEmail;
+        }
+      });
   });
 
   sectionSignup.append(headerSignup, mainSignup);
