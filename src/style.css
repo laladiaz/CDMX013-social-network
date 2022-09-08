@@ -142,3 +142,12 @@ text-align: center;
 #form-login-modal, #form-signup-modal {
     margin-top: 18%;
 }
+
+.error-paragraph {
+    text-align: center;
+    color: rgb(255, 38, 0);
+    background-color: rgba(255, 255, 255, 0.26) ;
+    width: 13rem;
+    margin-left: 6rem;
+    border-radius: 4px;
+}
