@@ -37,9 +37,14 @@ export const home = () => {
   sectionPosts.setAttribute('class', 'section-posts');
   const navMenu = document.createElement('nav');
   navMenu.setAttribute('class', 'nav-menu');
+  const indicatorDiv = document.createElement('div');
+  indicatorDiv.setAttribute('class', 'indicator-div');
   const imageHomeNav = document.createElement('img');
   imageHomeNav.setAttribute('src', './img/home.png');
   imageHomeNav.setAttribute('class', 'image-home-nav');
+  const dotIndicator = document.createElement('img');
+  dotIndicator.setAttribute('src', './img/dot.png');
+  dotIndicator.setAttribute('class', 'dot-indicator');
   const imageSearchNav = document.createElement('img');
   imageSearchNav.setAttribute('src', './img/search.png');
   imageSearchNav.setAttribute('class', 'image-search-nav');
@@ -47,7 +52,9 @@ export const home = () => {
   imageUserNav.setAttribute('src', './img/user.png');
   imageUserNav.setAttribute('class', 'image-profile-nav');
 
-  navMenu.append(imageHomeNav, imageSearchNav, imageUserNav);
+  indicatorDiv.append(imageHomeNav, dotIndicator);
+
+  navMenu.append(indicatorDiv, imageSearchNav, imageUserNav);
 
   mainHome.append(sectionPosts, navMenu);
 
