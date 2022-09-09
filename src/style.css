@@ -151,3 +151,12 @@ text-align: center;
     margin-left: 6rem;
     border-radius: 4px;
 }
+
+.paragraph-terms {
+    text-align: center;
+    color: #645C5C;
+    font-size: 9px;
+    width: 170px;
+    position: relative;
+    top: 2rem;
+}
