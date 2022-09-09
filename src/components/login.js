@@ -1,4 +1,8 @@
+/* eslint-disable max-len */
+// eslint-disable-next-line import/no-unresolved
+import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
+import { auth } from '../lib/auth.js';
 
 export const login = () => {
   // section login
@@ -64,9 +68,13 @@ export const login = () => {
   submitLoginButton.setAttribute('id', 'submit-login-modal');
   submitLoginButton.setAttribute('class', 'modal-button');
   submitLoginButton.textContent = 'Enter';
+
+  // create paragrapho to show the error
+  const paragraphError = document.createElement('p');
+  paragraphError.setAttribute('class', 'error-paragraph');
   
   // appends the buttons and input text areas to form
-  formLoginModal.append(emailLoginInput, passLoginInput, cancelLoginButton, submitLoginButton);
+  formLoginModal.append(emailLoginInput, passLoginInput, paragraphError, cancelLoginButton, submitLoginButton);
 
   // appends the form to the dialog tag
   loginModal.appendChild(formLoginModal);
@@ -88,6 +96,34 @@ export const login = () => {
     e.preventDefault();
     loginModal.close();
   });
+
+  // click listener for the enter button to login with email and redirect to home
+  submitLoginButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const loginEmail = emailLoginInput.value;
+    const loginPassword = passLoginInput.value;
+    signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+      .then(() => {
+        onNavigate('/home');
+      })
+      .catch((error) => {
+        const invalidEmail = 'Please check your information again';
+        const wrongPassword = 'Wrong password, please try again';
+        const userNotFound = 'This email is not registered, please Sign Up';
+        const enterPassword = ' Please enter a password';
+  
+        if (error.code === 'auth/invalid-email') {
+          paragraphError.innerText = invalidEmail;
+        } else if (error.code === 'auth/wrong-password') {
+          paragraphError.innerText = wrongPassword;
+        } else if (error.code === 'auth/user-not-found') {
+          paragraphError.innerText = userNotFound;
+        } else if (error.code === 'uth/internal-error') {
+          paragraphError.innerHTML = enterPassword;
+        }
+      });
+  });
+
   sectionLogin.append(headerLogin, mainLogin);
   return sectionLogin;
 };
