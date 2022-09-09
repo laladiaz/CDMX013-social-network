@@ -1,8 +1,8 @@
 /* eslint-disable import/no-unresolved */
-import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
 // import { app } from '../lib/config.js';
-import { auth } from '../lib/auth.js';
+import { auth, provider } from '../lib/auth.js';
 
 export const signup = () => {
   const sectionSignup = document.createElement('section');
@@ -43,11 +43,16 @@ export const signup = () => {
   backButton.setAttribute('id', 'backButtonSignup');
   backButton.textContent = ('Back');
 
+  // adds the paragrapgh for terms and privacy policy
+  const paragraphTerms = document.createElement('p');
+  paragraphTerms.setAttribute('class', 'paragraph-terms');
+  paragraphTerms.textContent = 'By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use.';
+
   // appends the signup div in main
   mainSignup.appendChild(signupButtonsDiv);
 
   // adds the buttons for signup to their div
-  signupButtonsDiv.append(backButton, emailSignupButton, googleSignupButton);
+  signupButtonsDiv.append(backButton, paragraphTerms, emailSignupButton, googleSignupButton);
 
   // adds dialog and form for a signup modal
   const signupModal = document.createElement('dialog');
@@ -88,6 +93,14 @@ export const signup = () => {
   // click listener  for the back button
   backButton.addEventListener('click', () => {
     onNavigate('/');
+  });
+
+  // click lister to login with google account
+  googleSignupButton.addEventListener('click', () => {
+    signInWithPopup(auth, provider)
+      .then(() => {
+        onNavigate('/home');
+      });
   });
 
   // click listener for the emailLoginButton to show the loginModal
