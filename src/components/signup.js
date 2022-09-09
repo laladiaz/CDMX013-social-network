@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+import { createUserWithEmailAndPassword, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
 // import { app } from '../lib/config.js';
 import { auth, provider } from '../lib/auth.js';
