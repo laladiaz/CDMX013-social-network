@@ -163,7 +163,7 @@ text-align: center;
     top: 2rem;
 }
 
-.header-home{
+.header-home, .header-profile{
     grid-column: span 3;
     grid-row: span 1;
     height: 100%;
@@ -193,7 +193,7 @@ text-align: center;
     font-weight: lighter;
 }
 
-.div-create-post{
+.div-create-post, .div-profile-body{
     margin-right: 5%;
     display: flex;
     flex-direction: column;
@@ -201,24 +201,24 @@ text-align: center;
     align-items: center;
 }
 
-.image-create-post{
+.image-create-post, .image-settings-profile {
     margin-top: 1.5rem;
     width: 2.5rem;
     height: 2.5rem;
 }
 
-.title-create-post{
+.title-create-post, .title-settings-profile {
     font-size: 10.5px;
     color: #1e1e1e;
 }
 
-.home-main{
+.home-main, .profile-main{
     grid-column: span 3;
     grid-row: span 4;
 }
 
 
-.section-posts{
+.section-posts, .section-profile-main{
     grid-column: span 4;
     grid-row: span 3;
     width: 100%;
