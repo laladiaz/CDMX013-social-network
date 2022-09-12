@@ -1,4 +1,4 @@
-// import { onNavigate } from '../main.js';
+import { onNavigate } from '../main.js';
 
 export const profile = () => {
   const sectionProfile = document.createElement('section');
@@ -66,6 +66,10 @@ export const profile = () => {
   navMenu.append(imageHomeNav, imageSearchNav, indicatorDiv);
   
   mainProfile.append(sectionProfileMain, navMenu);
+
+  imageHomeNav.addEventListener('click', () => {
+    onNavigate('/home');
+  });
   
   sectionProfile.append(headerProfile, mainProfile); 
   return sectionProfile;
