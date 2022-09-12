@@ -2,6 +2,7 @@ import { login } from './components/login.js';
 import { signup } from './components/signup.js';
 import { welcome } from './components/welcome.js';
 import { home } from './components/home.js';
+import { profile } from './components/profile.js';
 
 // define root as the div root written in index.html
 const root = document.getElementById('root');
@@ -11,6 +12,7 @@ const routes = {
   '/login': login,
   '/signup': signup,
   '/home': home,
+  '/profile': profile,
 };
 export const onNavigate = (pathname) => {
   window.history.pushState(
