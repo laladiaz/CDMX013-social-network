@@ -264,3 +264,7 @@ text-align: center;
     width: 2.5rem;
     height: 4.23rem;
 }
+
+.image-profile-nav:hover, .image-home-nav:hover{
+    cursor:pointer;
+}

@@ -1,3 +1,5 @@
+import { onNavigate } from '../main.js';
+
 export const home = () => {
   const sectionHome = document.createElement('section');
 
@@ -55,6 +57,10 @@ export const home = () => {
   indicatorDiv.append(imageHomeNav, dotIndicator);
 
   navMenu.append(indicatorDiv, imageSearchNav, imageUserNav);
+
+  imageUserNav.addEventListener('click', () => {
+    onNavigate('/profile');
+  });
 
   mainHome.append(sectionPosts, navMenu);
 
