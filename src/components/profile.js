@@ -29,8 +29,8 @@ export const profile = () => {
   titleSettingsProfile.textContent = 'settings';
 
   // dropdown menu for setting
-  const divSetting = document.createElement('div');
-  divSetting.setAttribute('class', 'div-settings');
+  const dialogSetting = document.createElement('dialog');
+  dialogSetting.setAttribute('class', 'dialog-settings');
   // logout img
   const divLogoutImg = document.createElement('div');
   divLogoutImg.setAttribute('class', 'div-logout-img');
@@ -47,16 +47,23 @@ export const profile = () => {
   editImg.setAttribute('src', './img/edit.png');
   editImg.setAttribute('class', 'edit-img');
   const editTitle = document.createElement('p');
-  editTitle.textContent = 'edit';
+  editTitle.setAttribute('class', 'edit-title');
+  editTitle.textContent = 'Edit';
+  const closeSettings = document.createElement('p');
+  closeSettings.setAttribute('class', 'close-settings');
+  closeSettings.textContent = 'X';
   
   // appends items to div
   divLogoutImg.append(logoutImg, logoutTitle);
   divEditProfile.append(editImg, editTitle);
   // appends divs to div settings
-  divSetting.append(divEditProfile, divLogoutImg);
+  dialogSetting.append(divEditProfile, divLogoutImg, closeSettings);
 
   divProfileBody.addEventListener('click', () => {
-    divSetting.style.display = 'block'; 
+    dialogSetting.show();
+  });
+  closeSettings.addEventListener('click', () => {
+    dialogSetting.close();
   });
   
   divProfileBody.append(imageSettingsProfile, titleSettingsProfile);
@@ -96,7 +103,7 @@ export const profile = () => {
   
   navMenu.append(imageHomeNav, imageSearchNav, indicatorDiv);
   
-  mainProfile.append(divSetting, sectionProfileMain, navMenu);
+  mainProfile.append(dialogSetting, sectionProfileMain, navMenu);
   
   imageHomeNav.addEventListener('click', () => {
     onNavigate('/home');
