@@ -1,4 +1,7 @@
-// import { onNavigate } from '../main.js';
+/* eslint-disable import/no-unresolved */
+import { signOut } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+import { onNavigate } from '../main.js';
+import { auth } from '../lib/auth.js';
 
 export const profile = () => {
   const sectionProfile = document.createElement('section');
@@ -27,6 +30,50 @@ export const profile = () => {
   const titleSettingsProfile = document.createElement('p');
   titleSettingsProfile.setAttribute('class', 'title-settings-profile');
   titleSettingsProfile.textContent = 'settings';
+
+  // dropdown menu for setting
+  const dialogSetting = document.createElement('dialog');
+  dialogSetting.setAttribute('class', 'dialog-settings');
+  // logout img
+  const divLogoutImg = document.createElement('div');
+  divLogoutImg.setAttribute('class', 'div-logout-img');
+  const logoutImg = document.createElement('img');
+  logoutImg.setAttribute('src', './img/logout.png');
+  logoutImg.setAttribute('class', 'logout-img');
+  const logoutTitle = document.createElement('p');
+  logoutTitle.setAttribute('class', 'logout-title');
+  logoutTitle.textContent = 'Log Out';
+  // edit profile
+  const divEditProfile = document.createElement('div');
+  divEditProfile.setAttribute('class', 'div-edit-profile');
+  const editImg = document.createElement('img');
+  editImg.setAttribute('src', './img/edit.png');
+  editImg.setAttribute('class', 'edit-img');
+  const editTitle = document.createElement('p');
+  editTitle.setAttribute('class', 'edit-title');
+  editTitle.textContent = 'Edit';
+  const closeSettings = document.createElement('p');
+  closeSettings.setAttribute('class', 'close-settings');
+  closeSettings.textContent = 'X';
+  
+  // appends items to div
+  divLogoutImg.append(logoutImg, logoutTitle);
+  divEditProfile.append(editImg, editTitle);
+  // appends divs to div settings
+  dialogSetting.append(divEditProfile, divLogoutImg, closeSettings);
+
+  divProfileBody.addEventListener('click', () => {
+    dialogSetting.show();
+  });
+  closeSettings.addEventListener('click', () => {
+    dialogSetting.close();
+  });
+
+  divLogoutImg.addEventListener('click', () => {
+    signOut(auth).then(() => {
+      onNavigate('/');
+    });
+  });
   
   divProfileBody.append(imageSettingsProfile, titleSettingsProfile);
   
@@ -65,7 +112,11 @@ export const profile = () => {
   
   navMenu.append(imageHomeNav, imageSearchNav, indicatorDiv);
   
-  mainProfile.append(sectionProfileMain, navMenu);
+  mainProfile.append(dialogSetting, sectionProfileMain, navMenu);
+  
+  imageHomeNav.addEventListener('click', () => {
+    onNavigate('/home');
+  });
   
   sectionProfile.append(headerProfile, mainProfile); 
   return sectionProfile;
