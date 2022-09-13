@@ -34,6 +34,11 @@ export const welcome = () => {
   // appends the buttons to the main tag
   mainWelcome.append(loginButton, signupButton);
 
+  // footer
+  const footerWelcome = document.createElement('footer');
+  footerWelcome.setAttribute('class', 'footer-welcome');
+  footerWelcome.textContent = '©️2022 Jean y Lala';
+
   // adds event listener to login and signup buttons
   loginButton.addEventListener('click', () => {
     onNavigate('/login');  
@@ -43,6 +48,6 @@ export const welcome = () => {
   });
 
   // appends the header and main to section
-  sectionWelcome.append(headerWelcome, mainWelcome);
+  sectionWelcome.append(headerWelcome, mainWelcome, footerWelcome);
   return sectionWelcome;
 };
