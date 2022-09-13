@@ -268,6 +268,44 @@ text-align: center;
 .image-profile-nav:hover, .image-home-nav:hover{
     cursor:pointer;
 }
-.div-settings{
-    display: none;
+.dialog-settings {
+    position: relative;
+    z-index: 2;
+    width: fit-content;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 8px;
+    background: #89599B;
+    left: 16.5rem;
+
+}
+.div-logout-img, .div-edit-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 1rem 0.5rem 1rem;
+}
+.logout-img, .edit-img{
+    width: 2rem;
+    height: 2rem;
+}
+.logout-title, .edit-title{
+    font-size: 9.5px;
+    color: white;
+}
+.close-settings{
+    position:absolute;
+    z-index: 3;
+    font-size: 12px;
+    color:#FFCB05;
+    font-weight:bold;
+    margin-right: 1rem;
+    top: -0.5rem;
+    left: 7.5rem;
+    padding: 0;
+
+
 }
