@@ -1,4 +1,7 @@
+/* eslint-disable import/no-unresolved */
+import { signOut } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
+import { auth } from '../lib/auth.js';
 
 export const profile = () => {
   const sectionProfile = document.createElement('section');
@@ -64,6 +67,12 @@ export const profile = () => {
   });
   closeSettings.addEventListener('click', () => {
     dialogSetting.close();
+  });
+
+  divLogoutImg.addEventListener('click', () => {
+    signOut(auth).then(() => {
+      onNavigate('/');
+    });
   });
   
   divProfileBody.append(imageSettingsProfile, titleSettingsProfile);
