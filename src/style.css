@@ -29,6 +29,7 @@ body, section {
     display: flex;
     align-items: flex-start;
     justify-content: space-evenly;
+    margin-top: 2rem;
 }
 .header-label {
     display: flex;
