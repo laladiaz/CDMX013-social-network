@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-unresolved
+import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+import { auth } from '../lib/auth.js';
 import { onNavigate } from '../main.js';
 
 export const home = () => {
@@ -58,6 +61,14 @@ export const home = () => {
   indicatorDiv.append(imageHomeNav, dotIndicator);
 
   navMenu.append(indicatorDiv, imageSearchNav, imageUserNav);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log('user login');
+    } else {
+      onNavigate('/');
+    }
+  });
 
   imageUserNav.addEventListener('click', () => {
     onNavigate('/profile');
