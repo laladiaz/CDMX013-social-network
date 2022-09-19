@@ -4,15 +4,21 @@ html {
     background-color: #E8DEEC;
     overflow: hidden;
     width: 100%;
-}
 
-body, section {
-    display: grid;
-    grid-template-columns: repeat(3, 8.54rem);
-    grid-template-rows: repeat(6, 7.45rem);
-    gap: 0.5rem;
+}
+body {
     padding: 0;
     margin: 0;
+}
+
+
+.section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 0.5rem;
+    height: 100vh;
+    
 }
 
 .register-header, .login-header {
@@ -242,7 +248,7 @@ text-align: center;
     grid-column: span 1;
     grid-row: span 3;
     width: 100%;
-    height: 7.8rem;
+    height: 17vh;
     background-color: #89599B;
     border-top: solid 3px #343434;
     display: flex;
@@ -320,4 +326,8 @@ text-align: center;
 }
 .close-settings:hover {
     cursor: pointer;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    
 }

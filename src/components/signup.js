@@ -6,7 +6,7 @@ import { auth, provider } from '../lib/auth.js';
 
 export const signup = () => {
   const sectionSignup = document.createElement('section');
-  sectionSignup.setAttribute('id', 'signupPage');
+  sectionSignup.setAttribute('class', 'section');
 
   // section signup header
   const headerSignup = document.createElement('header');
