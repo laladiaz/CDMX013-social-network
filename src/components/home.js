@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-// import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { auth } from '../lib/auth.js';
 import { onNavigate } from '../main.js';
 
@@ -48,7 +48,8 @@ export const home = () => {
   const divUserNewPost = document.createElement('div');
   divUserNewPost.setAttribute('class', 'div-user-new-post');
   const userImage = document.createElement('img');
-  userImage.setAttribute('src', './img/user.png');
+  userImage.setAttribute('class', 'user-image');
+  userImage.setAttribute('src', './img/user-image.png');
   const emailUserNewPost = document.createElement('p');
   emailUserNewPost.setAttribute('class', 'email-user-new-post');
   emailUserNewPost.textContent = '';
@@ -58,15 +59,17 @@ export const home = () => {
   inputNewPost.setAttribute('placeholder', 'share something');
   const divSavePost = document.createElement('div');
   divSavePost.setAttribute('class', 'save-post-div');
-  const savePostButton = document.createElement('button');
+  const savePostButton = document.createElement('img');
   savePostButton.setAttribute('class', 'save-post-button');
+  savePostButton.setAttribute('src', './img/save.png');
   const savePostText = document.createElement('p');
   savePostText.setAttribute('class', 'save-post-text');
   savePostText.textContent = 'save';
   const divCancelPost = document.createElement('div');
   divCancelPost.setAttribute('class', 'cancel-post');
-  const cancelPostButton = document.createElement('button');
+  const cancelPostButton = document.createElement('img');
   cancelPostButton.setAttribute('class', 'cancel-post-button');
+  cancelPostButton.setAttribute('src', './img/cancel.png');
   const cancelPostText = document.createElement('p');
   cancelPostText.setAttribute('class', 'cancel-post-text');
   cancelPostText.textContent = 'cancel';
@@ -101,13 +104,13 @@ export const home = () => {
 
   navMenu.append(indicatorDiv, imageSearchNav, imageUserNav);
 
-  /* onAuthStateChanged(auth, (user) => {
+  onAuthStateChanged(auth, (user) => {
     if (user) {
       console.log('user login', user.email);
     } else {
       onNavigate('/');
     }
-  }); */
+  });
 
   imageUserNav.addEventListener('click', () => {
     onNavigate('/profile');
@@ -124,6 +127,10 @@ export const home = () => {
       emailUserNewPost.innerHTML = user.email;
     } 
   }); 
+
+  divCancelPost.addEventListener('click', () => {
+    newPost.close();
+  });
 
   mainHome.append(sectionPosts, navMenu, newPost);
 
