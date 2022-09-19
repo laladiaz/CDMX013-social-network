@@ -12,12 +12,12 @@ body {
 }
 
 
-section {
+.section {
     display: grid;
-    grid-template-columns: repeat(3, 32%);
-    grid-template-rows: repeat(6, 33.2%);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     gap: 0.5rem;
-
+    height: 100vh;
     
 }
 
@@ -248,7 +248,7 @@ text-align: center;
     grid-column: span 1;
     grid-row: span 3;
     width: 100%;
-    height: 7.8rem;
+    height: 17vh;
     background-color: #89599B;
     border-top: solid 3px #343434;
     display: flex;
