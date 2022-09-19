@@ -7,7 +7,7 @@ import { auth, provider } from '../lib/auth.js';
 export const login = () => {
   // section login
   const sectionLogin = document.createElement('section');
-  sectionLogin.setAttribute('id', 'login-page');
+  sectionLogin.setAttribute('class', 'section');
 
   // section header
   const headerLogin = document.createElement('header');

@@ -3,7 +3,7 @@ import { onNavigate } from '../main.js';
 export const welcome = () => {
   // section welcome
   const sectionWelcome = document.createElement('section');
-  sectionWelcome.setAttribute('id', 'register-page');
+  sectionWelcome.setAttribute('class', 'section');
 
   // section header
   const headerWelcome = document.createElement('header');

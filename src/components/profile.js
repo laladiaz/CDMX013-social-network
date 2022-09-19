@@ -5,6 +5,7 @@ import { auth } from '../lib/auth.js';
 
 export const profile = () => {
   const sectionProfile = document.createElement('section');
+  sectionProfile.setAttribute('class', 'section');
   
   // Header of Profile
   const headerProfile = document.createElement('header');

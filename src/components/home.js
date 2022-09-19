@@ -2,6 +2,7 @@ import { onNavigate } from '../main.js';
 
 export const home = () => {
   const sectionHome = document.createElement('section');
+  sectionHome.setAttribute('class', 'section');
 
   // Header of home
   const headerHome = document.createElement('header');
