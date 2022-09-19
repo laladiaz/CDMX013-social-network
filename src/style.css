@@ -328,6 +328,58 @@ text-align: center;
     cursor: pointer;
 }
 
+.new-post {
+    border: none;
+    background-color: #89599B;
+    border-radius: 8px;
+}
+
+.user-image{
+    width: 2.91rem;
+}
+
+.email-user-new-post, .save-post-text, .cancel-post-text{
+    color: white;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+.div-user-new-post{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.input-new-post{
+    border: none;
+    border-radius: 6px;
+    margin-top: 2rem;
+    width: 60vw;
+    height: 20vh;
+}
+
+.save-post-button{
+    width: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.save-post-div, .cancel-post{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 10vh;
+}
+.cancel-post-button{
+    width: 3.5rem;
+}
+
+.div-buttons-new-post{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+    height: 10vh;
+}
 @media (min-width: 768px) and (max-width: 1024px) {
     
 }
