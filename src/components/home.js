@@ -41,6 +41,25 @@ export const home = () => {
   mainHome.setAttribute('class', 'home-main');
   const sectionPosts = document.createElement('section');
   sectionPosts.setAttribute('class', 'section-posts');
+  const divLayoutPost = document.createElement('div');
+  divLayoutPost.setAttribute('class', 'div-layout-post');
+  const divUserPost = document.createElement('div');
+  divUserPost.setAttribute('class', 'div-user-post');
+  const userImagePost = document.createElement('img');
+  userImagePost.setAttribute('class', 'user-image');
+  userImagePost.setAttribute('src', './img/user-image.png');
+  const emailUserPost = document.createElement('p');
+  emailUserPost.textContent = 'la_espacial@yahoo.com';
+  emailUserPost.setAttribute('class', 'email-user-post');
+  const inputPost = document.createElement('input');
+  inputPost.setAttribute('class', 'input-post');
+  inputPost.setAttribute('type', 'text');
+  inputPost.readOnly = true;
+
+  // apends items to div layout for posts
+  divUserPost.append(userImagePost, emailUserPost);
+  divLayoutPost.append(divUserPost, inputPost);
+  sectionPosts.append(divLayoutPost);
 
   // modal post
   const newPost = document.createElement('dialog');
@@ -52,7 +71,6 @@ export const home = () => {
   userImage.setAttribute('src', './img/user-image.png');
   const emailUserNewPost = document.createElement('p');
   emailUserNewPost.setAttribute('class', 'email-user-new-post');
-  emailUserNewPost.textContent = '';
   const inputNewPost = document.createElement('input');
   inputNewPost.setAttribute('class', 'input-new-post');
   inputNewPost.setAttribute('type', 'text');
@@ -124,7 +142,7 @@ export const home = () => {
     newPost.showModal();
     const user = auth.currentUser;
     if (user) {
-      emailUserNewPost.innerHTML = user.email;
+      emailUserNewPost.textContent = user.email;
     } 
   }); 
 
