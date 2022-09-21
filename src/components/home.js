@@ -2,6 +2,7 @@
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { auth } from '../lib/auth.js';
 import { onNavigate } from '../main.js';
+import { savePost, onGetPosts } from '../lib/firestore.js';
 
 export const home = () => {
   const sectionHome = document.createElement('section');
@@ -124,7 +125,12 @@ export const home = () => {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log('user login', user.email);
+      onGetPosts((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          const post = doc.data();
+          console.log(post);
+        });
+      });
     } else {
       onNavigate('/');
     }
@@ -134,17 +140,19 @@ export const home = () => {
     onNavigate('/profile');
   });
 
-  // const user = auth.currentUser;
-  
-  console.log(auth); 
-
   divCreatePost.addEventListener('click', () => {
     newPost.showModal();
     const user = auth.currentUser;
     if (user) {
       emailUserNewPost.textContent = user.email;
-    } 
+    }  
   }); 
+  // create post
+  divSavePost.addEventListener('click', () => {
+    // inputNewPost emailUserNewPost
+    savePost(inputNewPost.value);
+    newPost.close();
+  });
 
   divCancelPost.addEventListener('click', () => {
     newPost.close();
