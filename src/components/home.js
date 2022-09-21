@@ -52,9 +52,10 @@ export const home = () => {
   const emailUserPost = document.createElement('p');
   emailUserPost.textContent = 'la_espacial@yahoo.com';
   emailUserPost.setAttribute('class', 'email-user-post');
-  const inputPost = document.createElement('input');
+  const inputPost = document.createElement('textarea');
   inputPost.setAttribute('class', 'input-post');
-  inputPost.setAttribute('type', 'text');
+  inputPost.setAttribute('cols', '20');
+  inputPost.setAttribute('rows', '20');
   inputPost.readOnly = true;
 
   // apends items to div layout for posts
@@ -72,10 +73,15 @@ export const home = () => {
   userImage.setAttribute('src', './img/user-image.png');
   const emailUserNewPost = document.createElement('p');
   emailUserNewPost.setAttribute('class', 'email-user-new-post');
-  const inputNewPost = document.createElement('input');
+  const inputNewPost = document.createElement('textarea');
   inputNewPost.setAttribute('class', 'input-new-post');
-  inputNewPost.setAttribute('type', 'text');
+  inputNewPost.setAttribute('cols', '20');
+  inputNewPost.setAttribute('rows', '20');
+  inputNewPost.setAttribute('maxlength', '200');
+  inputNewPost.spellcheck = true;
   inputNewPost.setAttribute('placeholder', 'share something');
+  const countParagraph = document.createElement('p');
+  countParagraph.setAttribute('class', 'count-paragraph');
   const divSavePost = document.createElement('div');
   divSavePost.setAttribute('class', 'save-post-div');
   const savePostButton = document.createElement('img');
@@ -95,11 +101,27 @@ export const home = () => {
   const divButtonsNewPost = document.createElement('div');
   divButtonsNewPost.setAttribute('class', 'div-buttons-new-post');
 
+  // counter for the number of characters written
+  const counterCharacters = (text) => {
+    const maxLength = 200;
+    const strLength = text.value.length;
+    if (strLength > maxLength) {
+      countParagraph.textContent = `${strLength}/${maxLength}`;
+    } else {
+      countParagraph.textContent = `${strLength}/${maxLength}`;
+    }
+  };
+
+  // eslint-disable-next-line prefer-arrow-callback
+  inputNewPost.addEventListener('keyup', function () {
+    counterCharacters(inputNewPost);
+  });
+
   divCancelPost.append(cancelPostButton, cancelPostText);
   divUserNewPost.append(userImage, emailUserNewPost);
   divButtonsNewPost.append(divCancelPost, divSavePost);
   divSavePost.append(savePostButton, savePostText);
-  newPost.append(divUserNewPost, inputNewPost, divButtonsNewPost);
+  newPost.append(divUserNewPost, inputNewPost, countParagraph, divButtonsNewPost);
 
   // nav menu
   const navMenu = document.createElement('nav');
