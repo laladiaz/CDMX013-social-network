@@ -60,7 +60,7 @@ export const signup = () => {
   const formSignupModal = document.createElement('form');
   formSignupModal.setAttribute('id', 'form-signup-modal');
   const emailSignupInput = document.createElement('input');
-  emailSignupInput.setAttribute('type', 'text');
+  emailSignupInput.setAttribute('type', 'email');
   emailSignupInput.setAttribute('placeholder', 'email');
   emailSignupInput.setAttribute('class', 'signup-input');
   const passSignupInput = document.createElement('input');
