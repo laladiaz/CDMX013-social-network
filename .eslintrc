@@ -28,6 +28,8 @@
     "jest/prefer-to-have-length": "warn",
     "jest/valid-expect": "error",
     "import/no-cycle": "off",
-    "no-trailing-spaces": "off"
+    "no-trailing-spaces": "off",
+    "prefer-arrow-callback":"off",
+    "func-names":"off"
   }
 }
