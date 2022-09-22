@@ -42,26 +42,37 @@ export const home = () => {
   mainHome.setAttribute('class', 'home-main');
   const sectionPosts = document.createElement('section');
   sectionPosts.setAttribute('class', 'section-posts');
-  const divLayoutPost = document.createElement('div');
-  divLayoutPost.setAttribute('class', 'div-layout-post');
-  const divUserPost = document.createElement('div');
-  divUserPost.setAttribute('class', 'div-user-post');
-  const userImagePost = document.createElement('img');
-  userImagePost.setAttribute('class', 'user-image');
-  userImagePost.setAttribute('src', './img/user-image.png');
-  const emailUserPost = document.createElement('p');
-  emailUserPost.textContent = 'la_espacial@yahoo.com';
-  emailUserPost.setAttribute('class', 'email-user-post');
-  const inputPost = document.createElement('textarea');
-  inputPost.setAttribute('class', 'input-post');
-  inputPost.setAttribute('cols', '20');
-  inputPost.setAttribute('rows', '20');
-  inputPost.readOnly = true;
 
-  // apends items to div layout for posts
-  divUserPost.append(userImagePost, emailUserPost);
-  divLayoutPost.append(divUserPost, inputPost);
-  sectionPosts.append(divLayoutPost);
+  const html = (obj) => {
+    const divLayoutPost = document.createElement('div');
+    divLayoutPost.setAttribute('class', 'div-layout-post');
+    const divUserPost = document.createElement('div');
+    divUserPost.setAttribute('class', 'div-user-post');
+    const userImagePost = document.createElement('img');
+    userImagePost.setAttribute('class', 'user-image');
+    userImagePost.setAttribute('src', './img/user-image.png');
+    const emailUserPost = document.createElement('p');
+    emailUserPost.textContent = obj.email;
+    emailUserPost.setAttribute('class', 'email-user-post');
+    const inputPost = document.createElement('textarea');
+    inputPost.setAttribute('class', 'input-post');
+    inputPost.setAttribute('cols', '20');
+    inputPost.setAttribute('rows', '20');
+    inputPost.readOnly = true;
+    inputPost.textContent = obj.text;
+    // apends items to div layout for posts
+    divUserPost.append(userImagePost, emailUserPost);
+    divLayoutPost.append(divUserPost, inputPost);
+    sectionPosts.append(divLayoutPost);
+  };
+
+  // render posts in home
+  onGetPosts((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      const post = doc.data();
+      html(post);
+    });
+  });
 
   // modal post
   const newPost = document.createElement('dialog');
@@ -112,7 +123,6 @@ export const home = () => {
     }
   };
 
-  // eslint-disable-next-line prefer-arrow-callback
   inputNewPost.addEventListener('keyup', function () {
     counterCharacters(inputNewPost);
   });
@@ -146,16 +156,9 @@ export const home = () => {
   navMenu.append(indicatorDiv, imageSearchNav, imageUserNav);
 
   onAuthStateChanged(auth, (user) => {
-    if (user) {
-      onGetPosts((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          const post = doc.data();
-          console.log(post);
-        });
-      });
-    } else {
+    if (!user) {
       onNavigate('/');
-    }
+    } 
   });
 
   imageUserNav.addEventListener('click', () => {
@@ -173,11 +176,11 @@ export const home = () => {
   // create post
   divSavePost.addEventListener('click', () => {
     const user = auth.currentUser;
-    let emailUser = '';
-    if (user) {
-      emailUser = user.email;
-    }  
-    console.log('esta es una prueba email user', emailUser);
+    const emailUser = user.email;
+    /*     if (user) {
+      emailUser = 
+    }   */
+    console.log(emailUser);
     // inputNewPost emailUserNewPost
     savePost(emailUser, inputNewPost.value);
     newPost.close();
@@ -187,8 +190,8 @@ export const home = () => {
     newPost.close();
   });
 
-  mainHome.append(sectionPosts, navMenu, newPost);
+  mainHome.append(sectionPosts, newPost);
 
-  sectionHome.append(headerHome, mainHome); 
+  sectionHome.append(headerHome, mainHome, navMenu); 
   return sectionHome;
 };
