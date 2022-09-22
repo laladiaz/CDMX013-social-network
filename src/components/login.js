@@ -53,7 +53,7 @@ export const login = () => {
   const formLoginModal = document.createElement('form');
   formLoginModal.setAttribute('id', 'form-login-modal');
   const emailLoginInput = document.createElement('input');
-  emailLoginInput.setAttribute('type', 'text');
+  emailLoginInput.setAttribute('type', 'email');
   emailLoginInput.setAttribute('placeholder', 'email');
   emailLoginInput.setAttribute('class', 'login-input');
   const passLoginInput = document.createElement('input');

@@ -166,11 +166,10 @@ text-align: center;
 .error-paragraph {
     text-align: center;
     color: rgb(255, 38, 0);
-    background-color: rgba(255, 255, 255, 0.514) ;
+    background-color: white;
     width: 13rem;
     margin-left: 6rem;
     border-radius: 4px;
-    
 }
 
 .paragraph-terms {
@@ -406,11 +405,21 @@ text-align: center;
     width: 60vw;
     height: 20vh;
     margin-top: 1rem;
+    font-family: sans-serif;
+}
+
+textarea{
+    font-family: sans-serif;
 }
 
 .email-user-post{
     color: black;
     font-family: sans-serif;
+}
+
+.count-paragraph{
+    text-align: right;
+    color: white;
 }
 @media (min-width: 768px) and (max-width: 1024px) {
     

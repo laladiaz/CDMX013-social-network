@@ -7,7 +7,7 @@ import { app } from './config.js';
 export const db = getFirestore(app);
 
 // add to the posts collection
-export const savePost = (text) => addDoc(collection(db, 'posts'), { text });
+export const savePost = (email, text) => addDoc(collection(db, 'posts'), { email, text });
 
 // to fetch the posts collection
 // export const getPosts = () => getDocs(db, 'posts');
