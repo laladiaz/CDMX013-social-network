@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 // eslint-disable-next-line import/no-unresolved
-import { signInWithEmailAndPassword, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+
 import { onNavigate } from '../main.js';
-import { auth, provider } from '../lib/auth.js';
+import { signInUser, popupGoogle } from '../lib/auth.js';
 
 export const login = () => {
   // section login
@@ -89,7 +89,7 @@ export const login = () => {
 
   // click lister to login with google account
   googleLoginButton.addEventListener('click', () => {
-    signInWithPopup(auth, provider)
+    popupGoogle()
       .then(() => {
         onNavigate('/home');
       });
@@ -110,7 +110,7 @@ export const login = () => {
     e.preventDefault();
     const loginEmail = emailLoginInput.value;
     const loginPassword = passLoginInput.value;
-    signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+    signInUser(loginEmail, loginPassword)
       .then(() => {
         onNavigate('/home');
       })
