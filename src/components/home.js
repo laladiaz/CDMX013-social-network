@@ -169,10 +169,17 @@ export const home = () => {
       emailUserNewPost.textContent = user.email;
     }  
   }); 
+
   // create post
   divSavePost.addEventListener('click', () => {
+    const user = auth.currentUser;
+    let emailUser = '';
+    if (user) {
+      emailUser = user.email;
+    }  
+    console.log('esta es una prueba email user', emailUser);
     // inputNewPost emailUserNewPost
-    savePost(inputNewPost.value);
+    savePost(emailUser, inputNewPost.value);
     newPost.close();
   });
 
