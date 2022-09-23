@@ -7,7 +7,7 @@ export const welcome = () => {
 
   // section header
   const headerWelcome = document.createElement('header');
-  headerWelcome.setAttribute('class', 'register-header');
+  headerWelcome.setAttribute('class', 'welcome-header');
 
   // logo of the welcome page
   const imgLogoWelcome = document.createElement('img');
