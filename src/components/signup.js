@@ -124,6 +124,7 @@ export const signup = () => {
         const invalidEmail = 'Please enter a valid email';
         const usedEmail = 'Email already in use, please Log In';
         const missingEmail = 'Please write an email'; 
+        const shortPassword = 'Password should be at least 6 characters';
   
         if (error.code === 'auth/invalid-email') {
           paragraphError.innerText = invalidEmail;
@@ -131,6 +132,8 @@ export const signup = () => {
           paragraphError.innerText = usedEmail;
         } else if (error.code === 'auth/missing-email') {
           paragraphError.innerText = missingEmail;
+        } else if (error.code === 'auth/weak-password') {
+          paragraphError.innerText = shortPassword;
         }
       });
   });
