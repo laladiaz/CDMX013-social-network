@@ -54,10 +54,8 @@ export const home = () => {
     const emailUserPost = document.createElement('p');
     emailUserPost.textContent = obj.email;
     emailUserPost.setAttribute('class', 'email-user-post');
-    const inputPost = document.createElement('textarea');
+    const inputPost = document.createElement('p');
     inputPost.setAttribute('class', 'input-post');
-    inputPost.setAttribute('cols', '20');
-    inputPost.setAttribute('rows', '20');
     inputPost.readOnly = true;
     inputPost.textContent = obj.text;
     // apends items to div layout for posts
@@ -68,6 +66,9 @@ export const home = () => {
 
   // render posts in home
   onGetPosts((querySnapshot) => {
+    while (sectionPosts.firstChild) {
+      sectionPosts.removeChild(sectionPosts.firstChild);
+    }
     querySnapshot.forEach((doc) => {
       const post = doc.data();
       html(post);
@@ -93,6 +94,7 @@ export const home = () => {
   inputNewPost.setAttribute('placeholder', 'share something');
   const countParagraph = document.createElement('p');
   countParagraph.setAttribute('class', 'count-paragraph');
+  countParagraph.textContent = '0/200';
   const divSavePost = document.createElement('div');
   divSavePost.setAttribute('class', 'save-post-div');
   const savePostButton = document.createElement('img');
@@ -168,26 +170,25 @@ export const home = () => {
   divCreatePost.addEventListener('click', () => {
     newPost.showModal();
     const user = auth.currentUser;
-    if (user) {
-      emailUserNewPost.textContent = user.email;
-    }  
+    const emailUser = user.email;
+    emailUserNewPost.textContent = emailUser;
   }); 
 
   // create post
   divSavePost.addEventListener('click', () => {
+    const hour = Date.now();
     const user = auth.currentUser;
     const emailUser = user.email;
-    /*     if (user) {
-      emailUser = 
-    }   */
-    console.log(emailUser);
-    // inputNewPost emailUserNewPost
-    savePost(emailUser, inputNewPost.value);
+    savePost(emailUser, inputNewPost.value, hour);
     newPost.close();
+    inputNewPost.value = '';
+    countParagraph.textContent = '0/200';
   });
 
   divCancelPost.addEventListener('click', () => {
     newPost.close();
+    inputNewPost.value = '';
+    countParagraph.textContent = '0/200';
   });
 
   mainHome.append(sectionPosts, newPost);
