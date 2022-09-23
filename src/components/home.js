@@ -97,7 +97,7 @@ export const home = () => {
   divSavePost.setAttribute('class', 'save-post-div');
   const savePostButton = document.createElement('img');
   savePostButton.setAttribute('class', 'save-post-button');
-  savePostButton.setAttribute('src', './img/save.png');
+  savePostButton.setAttribute('src', './img/save-new.png');
   const savePostText = document.createElement('p');
   savePostText.setAttribute('class', 'save-post-text');
   savePostText.textContent = 'save';
