@@ -1,8 +1,6 @@
-/* eslint-disable import/no-unresolved */
-import { createUserWithEmailAndPassword, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
 // import { app } from '../lib/config.js';
-import { auth, provider } from '../lib/auth.js';
+import { createUser, popupGoogle } from '../lib/auth.js';
 
 export const signup = () => {
   const sectionSignup = document.createElement('section');
@@ -97,7 +95,7 @@ export const signup = () => {
 
   // click lister to login with google account
   googleSignupButton.addEventListener('click', () => {
-    signInWithPopup(auth, provider)
+    popupGoogle()
       .then(() => {
         onNavigate('/home');
       });
@@ -118,7 +116,7 @@ export const signup = () => {
     const signupEmail = emailSignupInput.value;
     const signupPassword = passSignupInput.value;
 
-    createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
+    createUser(signupEmail, signupPassword)
       .then(() => {
         onNavigate('/home');
       })
