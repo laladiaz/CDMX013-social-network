@@ -24,7 +24,7 @@ export const login = () => {
   imgLogoLogin.setAttribute('class', 'logo-booknet');
 
   // appends img to header
-  headerLogin.append(imgLogoLogin, Loginlabel);
+  headerLogin.append(imgLogoLogin);
 
   // main of login
   const mainLogin = document.createElement('main');
@@ -132,6 +132,6 @@ export const login = () => {
       });
   });
 
-  sectionLogin.append(headerLogin, mainLogin);
+  sectionLogin.append(Loginlabel, headerLogin, mainLogin);
   return sectionLogin;
 };
