@@ -405,13 +405,14 @@ text-align: center;
     background: none;
     border: none;
     width: 60vw;
-    height: 20vh;
+    height: min-content;
     margin-top: 1rem;
     font-family: sans-serif;
 }
 
 textarea{
     font-family: sans-serif;
+    resize: none;
 }
 
 .email-user-post{
