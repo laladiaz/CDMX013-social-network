@@ -11,6 +11,7 @@ export const home = () => {
   // Header of home
   const headerHome = document.createElement('header');
   headerHome.setAttribute('class', 'header-home');
+
   // div for logo and home title
   const divLogo = document.createElement('div');
   divLogo.setAttribute('class', 'div-logo');
@@ -84,6 +85,7 @@ export const home = () => {
   userImage.setAttribute('class', 'user-image');
   userImage.setAttribute('src', './img/user-image.png');
   const emailUserNewPost = document.createElement('p');
+  emailUserNewPost.setAttribute('class', 'email-user-new-post');
   emailUserNewPost.setAttribute('class', 'email-user-new-post');
   const inputNewPost = document.createElement('textarea');
   inputNewPost.setAttribute('class', 'input-new-post');
