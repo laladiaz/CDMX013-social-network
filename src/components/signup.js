@@ -21,7 +21,7 @@ export const signup = () => {
   imgLogoSignup.setAttribute('class', 'logo-booknet');
 
   // appends img to header
-  headerSignup.append(imgLogoSignup, Signuplabel);
+  headerSignup.append(imgLogoSignup);
 
   // main of signup
   const mainSignup = document.createElement('main');
@@ -138,6 +138,6 @@ export const signup = () => {
       });
   });
 
-  sectionSignup.append(headerSignup, mainSignup);
+  sectionSignup.append(Signuplabel, headerSignup, mainSignup);
   return sectionSignup;
 };
