@@ -645,3 +645,32 @@ textarea{
         width: 60vw;
     }
 }
+
+@media (min-width: 960px) and (max-width: 1328px) {
+        .register-header{
+            grid-row: span 5;
+            grid-column: span 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .register-main{
+            grid-column: span 1;
+            grid-row: span 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .register-button{
+            width: 40%;
+            height: 7%;
+            margin-top: 2rem;
+        }
+        .footer-welcome{
+            font-size: 12px;
+        }
+        .header-label{
+            height: 9rem;
+        }
+}
