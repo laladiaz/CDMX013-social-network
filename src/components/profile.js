@@ -113,12 +113,12 @@ export const profile = () => {
   
   navMenu.append(imageHomeNav, imageSearchNav, indicatorDiv);
   
-  mainProfile.append(dialogSetting, sectionProfileMain, navMenu);
+  mainProfile.append(dialogSetting, sectionProfileMain);
   
   imageHomeNav.addEventListener('click', () => {
     onNavigate('/home');
   });
   
-  sectionProfile.append(headerProfile, mainProfile); 
+  sectionProfile.append(headerProfile, mainProfile, navMenu); 
   return sectionProfile;
 };
