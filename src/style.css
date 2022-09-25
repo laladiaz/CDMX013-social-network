@@ -646,15 +646,15 @@ textarea{
     }
 }
 
-@media (min-width: 960px) and (max-width: 1328px) {
-        .register-header{
+@media (min-width: 960px) {
+        .register-header, .welcome-header, .login-header{
             grid-row: span 5;
             grid-column: span 1;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .register-main{
+        .register-main, .login-main{
             grid-column: span 1;
             grid-row: span 5;
             display: flex;
@@ -672,5 +672,98 @@ textarea{
         }
         .header-label{
             height: 9rem;
+        }
+        .login-modal, .signup-modal{
+            position: fixed;
+            width: 30%;
+            height: 100vh;
+            top: 0%;
+            left: 68%;
+        }
+        #form-login-modal, #form-signup-modal{
+            margin-top: 85%;
+        }
+        .nav-menu{
+            position: fixed;
+            grid-column: span 1;
+            grid-row: span 6;
+            width: 9rem;
+            height: 100vh;
+            border-top: none;
+            border-right: solid 3px #343434;
+            flex-flow: column;
+            justify-content: center;
+        }
+        .image-search-nav{
+            margin-top: 10vh;
+            margin-bottom: 10vh;
+        }
+        .indicator-div{
+            flex-direction: row;
+        }
+        .dot-indicator{
+            margin-left: .5rem;
+            margin-top: 1rem;
+        }
+        .header-home, .header-profile{
+            justify-content: center;
+        }
+        .div-logo{
+           margin-right: 10vh; 
+        }
+        .div-create-post, .div-profile-body{
+            margin-left: 10vh;
+        }
+        .logoB-header{
+            width: 5rem;
+            height: 7rem;
+        }
+        .title-header{
+            font-size: 20px;
+        }
+        .image-create-post, .image-settings-profile{
+            width: 4rem;
+            height: 4rem;
+        }
+        .title-create-post, .title-settings-profile{
+            font-size: 16px;
+        }
+        .section-posts, .section-profile-main{
+            grid-row: span 5;
+        }
+        .div-layout-post{
+            width: 35%;
+        }
+        .input-post{
+            width: 30vh;
+            font-size: 12px;
+            margin-top: 2rem;
+        }
+        .new-post{
+            width: 60vh;
+        }
+        .input-new-post{
+            width: 59vh;
+        }
+        .div-buttons-new-post{
+            height: 5vh;
+        }
+        .cancel-post, .save-post-div{
+            height: 6vh;
+        }
+        .count-paragraph{
+            width: 98%;
+        }
+        .user-image{
+            width: 4rem;
+        }
+        .email-user-new-post{
+            font-size: 16px;
+        }
+        .dialog-settings{
+            left: 63%;
+        }
+        .home-main, .profile-main{
+            grid-row: span 6;
         }
 }
