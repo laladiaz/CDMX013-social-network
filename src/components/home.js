@@ -47,8 +47,24 @@ export const home = () => {
   const html = (obj) => {
     const divLayoutPost = document.createElement('div');
     divLayoutPost.setAttribute('class', 'div-layout-post');
+    const postSettings = document.createElement('img');
+    postSettings.setAttribute('src', './img/post-settings.png');
+    postSettings.setAttribute('class', 'post-settings');
     const divUserPost = document.createElement('div');
     divUserPost.setAttribute('class', 'div-user-post');
+    const dialogPostSettings = document.createElement('dialog');
+    dialogPostSettings.setAttribute('class', 'dialog-post-setting');
+    const closeSettings = document.createElement('p');
+    closeSettings.setAttribute('class', 'close-settings');
+    closeSettings.textContent = 'X';
+    const divDeletePost = document.createElement('div');
+    divDeletePost.setAttribute('class', 'div-delete-post');
+    const deletePost = document.createElement('img');
+    deletePost.setAttribute('src', './img/delete.png');
+    deletePost.setAttribute('class', 'delete-post');
+    const deletePostText = document.createElement('p');
+    deletePostText.setAttribute('class', 'delete-post-text');
+    deletePostText.textContent = 'Delete';
     const userImagePost = document.createElement('img');
     userImagePost.setAttribute('class', 'user-image');
     userImagePost.setAttribute('src', './img/user-image.png');
@@ -60,9 +76,14 @@ export const home = () => {
     inputPost.readOnly = true;
     inputPost.textContent = obj.text;
     // apends items to div layout for posts
+    divDeletePost.append(deletePostText, deletePost);
+    dialogPostSettings.append(closeSettings, divDeletePost);
     divUserPost.append(userImagePost, emailUserPost);
-    divLayoutPost.append(divUserPost, inputPost);
+    divLayoutPost.append(postSettings, dialogPostSettings, divUserPost, inputPost);
     sectionPosts.append(divLayoutPost);
+
+    postSettings.addEventListener('click', () => dialogPostSettings.showModal());
+    closeSettings.addEventListener('click', () => dialogPostSettings.close());
   };
 
   // render posts in home
