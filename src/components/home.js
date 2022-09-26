@@ -97,6 +97,8 @@ export const home = () => {
   const countParagraph = document.createElement('p');
   countParagraph.setAttribute('class', 'count-paragraph');
   countParagraph.textContent = '0/200';
+  const errorMessage = document.createElement('p');
+  errorMessage.setAttribute('class', 'error-post');
   const divSavePost = document.createElement('div');
   divSavePost.setAttribute('class', 'save-post-div');
   const savePostButton = document.createElement('img');
@@ -135,7 +137,7 @@ export const home = () => {
   divUserNewPost.append(userImage, emailUserNewPost);
   divButtonsNewPost.append(divCancelPost, divSavePost);
   divSavePost.append(savePostButton, savePostText);
-  newPost.append(divUserNewPost, inputNewPost, countParagraph, divButtonsNewPost);
+  newPost.append(divUserNewPost, inputNewPost, countParagraph, errorMessage, divButtonsNewPost);
 
   // nav menu
   const navMenu = document.createElement('nav');
@@ -181,10 +183,15 @@ export const home = () => {
     const hour = Date.now();
     const user = auth.currentUser;
     const emailUser = user.email;
-    savePost(emailUser, inputNewPost.value, hour);
-    newPost.close();
-    inputNewPost.value = '';
-    countParagraph.textContent = '0/200';
+
+    if (inputNewPost.length) {
+      savePost(emailUser, inputNewPost.value, hour);
+      newPost.close();
+      inputNewPost.value = '';
+      countParagraph.textContent = '0/200';
+    } else {
+      errorMessage.textContent = 'You haven\'t write anything';
+    }
   });
 
   divCancelPost.addEventListener('click', () => {
