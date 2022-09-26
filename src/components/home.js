@@ -44,13 +44,19 @@ export const home = () => {
   const sectionPosts = document.createElement('section');
   sectionPosts.setAttribute('class', 'section-posts');
 
-  const html = (obj) => {
+  const html = (obj, item) => {
     const divLayoutPost = document.createElement('div');
     divLayoutPost.setAttribute('class', 'div-layout-post');
-    const postSettings = document.createElement('img');
+
+    const deletePostOutside = document.createElement('img');
+    deletePostOutside.setAttribute('src', './img/delete.png');
+    deletePostOutside.setAttribute('class', 'delete-post');
+    deletePostOutside.id = `delete-post${item}`;
+
+    /*  const postSettings = document.createElement('img');
     postSettings.setAttribute('src', './img/post-settings.png');
     postSettings.setAttribute('class', 'post-settings');
-    postSettings.id = obj.id;
+    postSettings.id = `post-settings${item}`; */
     const divUserPost = document.createElement('div');
     divUserPost.setAttribute('class', 'div-user-post');
     const userImagePost = document.createElement('img');
@@ -83,14 +89,24 @@ export const home = () => {
     divDeletePost.append(deletePost, deletePostText);
     dialogPostSettings.append(closeSettings, divDeletePost);
     divUserPost.append(userImagePost, emailUserPost);
-    divLayoutPost.append(postSettings, dialogPostSettings, divUserPost, inputPost);
+    divLayoutPost.append(deletePostOutside, /* postSettings, */ dialogPostSettings, divUserPost, inputPost);
     sectionPosts.append(divLayoutPost);
+
+    const deleteBtn = document.getElementById(`delete-post${item}`);
+    console.log(deleteBtn);
+
+    /* deleteBtn.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        console.log('soy un click de forEach');
+        // deletePost(e.target.dataset.id);
+      });
+    }); */
 
     // eslint-disable-next-line max-len
     // postSettings.forEach((dots) => dots.addEventListener('click', () => dialogPostSettings.showModal()));
 
-    postSettings.addEventListener('click', () => dialogPostSettings.showModal());
-    closeSettings.addEventListener('click', () => dialogPostSettings.close());
+    // postSettings.addEventListener('click', () => dialogPostSettings.showModal());
+    // closeSettings.addEventListener('click', () => dialogPostSettings.close());
   };
 
   /* const dialogsPostsSettings = document.getElementsByClassName('dialog-post-setting');
@@ -106,7 +122,8 @@ export const home = () => {
     }
     querySnapshot.forEach((doc) => {
       const post = doc.data();
-      html(post);
+      const postId = doc.id;
+      html(post, postId);
     });
   });
 
