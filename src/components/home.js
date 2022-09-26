@@ -76,7 +76,7 @@ export const home = () => {
     inputPost.readOnly = true;
     inputPost.textContent = obj.text;
     // apends items to div layout for posts
-    divDeletePost.append(deletePostText, deletePost);
+    divDeletePost.append(deletePost, deletePostText);
     dialogPostSettings.append(closeSettings, divDeletePost);
     divUserPost.append(userImagePost, emailUserPost);
     divLayoutPost.append(postSettings, dialogPostSettings, divUserPost, inputPost);
