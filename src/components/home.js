@@ -50,8 +50,21 @@ export const home = () => {
     const postSettings = document.createElement('img');
     postSettings.setAttribute('src', './img/post-settings.png');
     postSettings.setAttribute('class', 'post-settings');
+    postSettings.id = obj.id;
     const divUserPost = document.createElement('div');
     divUserPost.setAttribute('class', 'div-user-post');
+    const userImagePost = document.createElement('img');
+    userImagePost.setAttribute('class', 'user-image');
+    userImagePost.setAttribute('src', './img/user-image.png');
+    const emailUserPost = document.createElement('p');
+    emailUserPost.textContent = obj.email;
+    emailUserPost.setAttribute('class', 'email-user-post');
+    const inputPost = document.createElement('p');
+    inputPost.setAttribute('class', 'input-post');
+    inputPost.readOnly = true;
+    inputPost.textContent = obj.text;
+    
+    // post setting modal
     const dialogPostSettings = document.createElement('dialog');
     dialogPostSettings.setAttribute('class', 'dialog-post-setting');
     const closeSettings = document.createElement('p');
@@ -65,16 +78,7 @@ export const home = () => {
     const deletePostText = document.createElement('p');
     deletePostText.setAttribute('class', 'delete-post-text');
     deletePostText.textContent = 'Delete';
-    const userImagePost = document.createElement('img');
-    userImagePost.setAttribute('class', 'user-image');
-    userImagePost.setAttribute('src', './img/user-image.png');
-    const emailUserPost = document.createElement('p');
-    emailUserPost.textContent = obj.email;
-    emailUserPost.setAttribute('class', 'email-user-post');
-    const inputPost = document.createElement('p');
-    inputPost.setAttribute('class', 'input-post');
-    inputPost.readOnly = true;
-    inputPost.textContent = obj.text;
+
     // apends items to div layout for posts
     divDeletePost.append(deletePost, deletePostText);
     dialogPostSettings.append(closeSettings, divDeletePost);
@@ -82,10 +86,19 @@ export const home = () => {
     divLayoutPost.append(postSettings, dialogPostSettings, divUserPost, inputPost);
     sectionPosts.append(divLayoutPost);
 
+    // eslint-disable-next-line max-len
+    // postSettings.forEach((dots) => dots.addEventListener('click', () => dialogPostSettings.showModal()));
+
     postSettings.addEventListener('click', () => dialogPostSettings.showModal());
     closeSettings.addEventListener('click', () => dialogPostSettings.close());
   };
 
+  /* const dialogsPostsSettings = document.getElementsByClassName('dialog-post-setting');
+  const btnsPostSettings = document.getElementsByClassName('post-settings');
+  btnsPostSettings.forEach(function (dots) {
+    dots.addEventListener('click', () => dialogsPostsSettings.showModal());
+  }); 
+ */
   // render posts in home
   onGetPosts((querySnapshot) => {
     while (sectionPosts.firstChild) {
