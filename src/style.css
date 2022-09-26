@@ -172,7 +172,7 @@ text-align: center;
     margin-top: 18%;
 }
 
-.error-paragraph {
+.error-paragraph, .error-post {
     text-align: center;
     color: rgb(255, 38, 0);
     background-color: white;
@@ -392,6 +392,10 @@ text-align: center;
     margin-top: 1rem;
     height: 10vh;
     padding-bottom: 1rem;
+}
+
+.error-post{
+    margin-left: 2rem;
 }
 
 .section-posts{
@@ -628,6 +632,10 @@ textarea{
         margin-left: 0.5rem;
     }
     
+    .error-post{
+        margin-left: 9rem;
+    }
+
     .save-post-button{
         width: 3.1rem;
     }
@@ -750,6 +758,10 @@ textarea{
         }
         .cancel-post, .save-post-div{
             height: 6vh;
+        }
+        .error-post{
+            margin-left: 10rem ;
+            margin-bottom: 3rem;
         }
         .count-paragraph{
             width: 98%;
