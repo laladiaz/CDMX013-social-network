@@ -295,7 +295,7 @@ text-align: center;
 .image-profile-nav:hover, .image-home-nav:hover{
     cursor:pointer;
 }
-.dialog-settings {
+.dialog-settings, .warning-delete {
     margin: 0;
     padding: 0;
     border: none;
@@ -442,6 +442,28 @@ textarea{
 .count-paragraph{
     text-align: right;
     color: white;
+}
+
+.warning-delete{
+    color: white;
+    top: 50%;
+    left:17%;
+    width: 33vh;
+    text-align: center;
+    padding: 1rem;
+}
+.btn-continue, .btn-cancel{
+    width: 35%;
+    border-radius: 8px;
+    background-color: white;
+    color: red;
+    border: none;
+    margin-bottom: .7rem;
+}
+.btn-cancel{
+    background-color: #FFCB05;
+    color: #1e1e1e;
+    margin-left: 1rem;
 }
 @media (min-width: 480px) and (max-width: 960px) {
     html {
