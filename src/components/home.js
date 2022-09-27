@@ -47,16 +47,10 @@ export const home = () => {
   const html = (obj, item) => {
     const divLayoutPost = document.createElement('div');
     divLayoutPost.setAttribute('class', 'div-layout-post');
-
-    const deletePostOutside = document.createElement('img');
-    deletePostOutside.setAttribute('src', './img/delete.png');
-    deletePostOutside.setAttribute('class', 'delete-post');
-    deletePostOutside.id = `delete-post${item}`;
-
-    /*  const postSettings = document.createElement('img');
+    const postSettings = document.createElement('img');
     postSettings.setAttribute('src', './img/post-settings.png');
     postSettings.setAttribute('class', 'post-settings');
-    postSettings.id = `post-settings${item}`; */
+    postSettings.id = `post-settings${item}`;
     const divUserPost = document.createElement('div');
     divUserPost.setAttribute('class', 'div-user-post');
     const userImagePost = document.createElement('img');
@@ -78,43 +72,30 @@ export const home = () => {
     closeSettings.textContent = 'X';
     const divDeletePost = document.createElement('div');
     divDeletePost.setAttribute('class', 'div-delete-post');
-    const deletePost = document.createElement('img');
-    deletePost.setAttribute('src', './img/delete.png');
-    deletePost.setAttribute('class', 'delete-post');
+    const deletePostOutside = document.createElement('img');
+    deletePostOutside.setAttribute('src', './img/delete.png');
+    deletePostOutside.setAttribute('class', 'delete-post');
+    deletePostOutside.dataset.id = item;
     const deletePostText = document.createElement('p');
     deletePostText.setAttribute('class', 'delete-post-text');
     deletePostText.textContent = 'Delete';
 
     // apends items to div layout for posts
-    divDeletePost.append(deletePost, deletePostText);
+    divDeletePost.append(deletePostOutside, deletePostText);
     dialogPostSettings.append(closeSettings, divDeletePost);
     divUserPost.append(userImagePost, emailUserPost);
-    divLayoutPost.append(deletePostOutside, /* postSettings, */ dialogPostSettings, divUserPost, inputPost);
+    divLayoutPost.append(postSettings, dialogPostSettings, divUserPost, inputPost);
     sectionPosts.append(divLayoutPost);
 
-    const deleteBtn = document.getElementById(`delete-post${item}`);
-    console.log(deleteBtn);
+    deletePostOutside.addEventListener('click', (e) => {
+      console.log(e.target.dataset.id);
+      // deletePost(e.target.dataset.id);
+    }); 
 
-    /* deleteBtn.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        console.log('soy un click de forEach');
-        // deletePost(e.target.dataset.id);
-      });
-    }); */
-
-    // eslint-disable-next-line max-len
-    // postSettings.forEach((dots) => dots.addEventListener('click', () => dialogPostSettings.showModal()));
-
-    // postSettings.addEventListener('click', () => dialogPostSettings.showModal());
-    // closeSettings.addEventListener('click', () => dialogPostSettings.close());
+    postSettings.addEventListener('click', () => dialogPostSettings.show());
+    closeSettings.addEventListener('click', () => dialogPostSettings.close());
   };
 
-  /* const dialogsPostsSettings = document.getElementsByClassName('dialog-post-setting');
-  const btnsPostSettings = document.getElementsByClassName('post-settings');
-  btnsPostSettings.forEach(function (dots) {
-    dots.addEventListener('click', () => dialogsPostsSettings.showModal());
-  }); 
- */
   // render posts in home
   onGetPosts((querySnapshot) => {
     while (sectionPosts.firstChild) {
