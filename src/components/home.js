@@ -2,7 +2,7 @@
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { auth } from '../lib/auth.js';
 import { onNavigate } from '../main.js';
-import { savePost, onGetPosts } from '../lib/firestore.js';
+import { savePost, onGetPosts, deletePost } from '../lib/firestore.js';
 
 export const home = () => {
   const sectionHome = document.createElement('section');
@@ -47,10 +47,6 @@ export const home = () => {
   const html = (obj, item) => {
     const divLayoutPost = document.createElement('div');
     divLayoutPost.setAttribute('class', 'div-layout-post');
-    const postSettings = document.createElement('img');
-    postSettings.setAttribute('src', './img/post-settings.png');
-    postSettings.setAttribute('class', 'post-settings');
-    postSettings.id = `post-settings${item}`;
     const divUserPost = document.createElement('div');
     divUserPost.setAttribute('class', 'div-user-post');
     const userImagePost = document.createElement('img');
@@ -64,36 +60,50 @@ export const home = () => {
     inputPost.readOnly = true;
     inputPost.textContent = obj.text;
     
-    // post setting modal
-    const dialogPostSettings = document.createElement('dialog');
-    dialogPostSettings.setAttribute('class', 'dialog-post-setting');
-    const closeSettings = document.createElement('p');
-    closeSettings.setAttribute('class', 'close-settings');
-    closeSettings.textContent = 'X';
-    const divDeletePost = document.createElement('div');
-    divDeletePost.setAttribute('class', 'div-delete-post');
     const deletePostOutside = document.createElement('img');
     deletePostOutside.setAttribute('src', './img/delete.png');
     deletePostOutside.setAttribute('class', 'delete-post');
     deletePostOutside.dataset.id = item;
-    const deletePostText = document.createElement('p');
-    deletePostText.setAttribute('class', 'delete-post-text');
-    deletePostText.textContent = 'Delete';
 
+    // dialog warning of deletion
+    const warningDeletePost = document.createElement('dialog');
+    warningDeletePost.setAttribute('class', 'warning-delete');
+    const paragraphWarning = document.createElement('p');
+    paragraphWarning.setAttribute('class', 'paragraph-warning-delete');
+    paragraphWarning.textContent = 'You are about to delete your post';
+    const paragraphCheck = document.createElement('p');
+    paragraphCheck.setAttribute('class', 'paragraph-check');
+    paragraphCheck.textContent = 'Are you sure?';
+    const btnContinue = document.createElement('button');
+    btnContinue.setAttribute('class', 'btn-continue');
+    btnContinue.textContent = 'Continue';
+    btnContinue.dataset.id = item;
+    const btnCancel = document.createElement('button');
+    btnCancel.setAttribute('class', 'btn-cancel');
+    btnCancel.textContent = 'Cancel';
+
+    warningDeletePost.append(paragraphWarning, paragraphCheck, btnContinue, btnCancel);
     // apends items to div layout for posts
-    divDeletePost.append(deletePostOutside, deletePostText);
-    dialogPostSettings.append(closeSettings, divDeletePost);
     divUserPost.append(userImagePost, emailUserPost);
-    divLayoutPost.append(postSettings, dialogPostSettings, divUserPost, inputPost);
+
+    const user = auth.currentUser;
+    if (user.email === obj.email) {
+      divLayoutPost.append(deletePostOutside, warningDeletePost, divUserPost, inputPost);
+      deletePostOutside.addEventListener('click', () => {
+        warningDeletePost.showModal();
+
+        btnContinue.addEventListener('click', (e) => {
+          deletePost(e.target.dataset.id);
+          warningDeletePost.close();
+        });
+
+        btnCancel.addEventListener('click', () => (warningDeletePost.close()));
+      });
+    } else {
+      divLayoutPost.append(divUserPost, inputPost);
+    }
+    
     sectionPosts.append(divLayoutPost);
-
-    deletePostOutside.addEventListener('click', (e) => {
-      console.log(e.target.dataset.id);
-      // deletePost(e.target.dataset.id);
-    }); 
-
-    postSettings.addEventListener('click', () => dialogPostSettings.show());
-    closeSettings.addEventListener('click', () => dialogPostSettings.close());
   };
 
   // render posts in home
@@ -163,6 +173,7 @@ export const home = () => {
 
   inputNewPost.addEventListener('keyup', function () {
     counterCharacters(inputNewPost);
+    errorMessage.textContent = '';
   });
 
   divCancelPost.append(cancelPostButton, cancelPostText);
@@ -216,19 +227,20 @@ export const home = () => {
     const user = auth.currentUser;
     const emailUser = user.email;
 
-    if (inputNewPost.length) {
+    if (!inputNewPost.value) {
+      errorMessage.textContent = 'You haven\'t write anything';
+    } else { 
       savePost(emailUser, inputNewPost.value, hour);
       newPost.close();
       inputNewPost.value = '';
       countParagraph.textContent = '0/200';
-    } else {
-      errorMessage.textContent = 'You haven\'t write anything';
     }
   });
 
   divCancelPost.addEventListener('click', () => {
     newPost.close();
     inputNewPost.value = '';
+    errorMessage.textContent = '';
     countParagraph.textContent = '0/200';
   });
 
