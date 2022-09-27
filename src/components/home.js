@@ -2,7 +2,7 @@
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { auth } from '../lib/auth.js';
 import { onNavigate } from '../main.js';
-import { savePost, onGetPosts } from '../lib/firestore.js';
+import { savePost, onGetPosts, deletePost } from '../lib/firestore.js';
 
 export const home = () => {
   const sectionHome = document.createElement('section');
@@ -44,7 +44,7 @@ export const home = () => {
   const sectionPosts = document.createElement('section');
   sectionPosts.setAttribute('class', 'section-posts');
 
-  const html = (obj) => {
+  const html = (obj, item) => {
     const divLayoutPost = document.createElement('div');
     divLayoutPost.setAttribute('class', 'div-layout-post');
     const divUserPost = document.createElement('div');
@@ -59,9 +59,50 @@ export const home = () => {
     inputPost.setAttribute('class', 'input-post');
     inputPost.readOnly = true;
     inputPost.textContent = obj.text;
+    
+    const deletePostOutside = document.createElement('img');
+    deletePostOutside.setAttribute('src', './img/delete.png');
+    deletePostOutside.setAttribute('class', 'delete-post');
+    deletePostOutside.dataset.id = item;
+
+    // dialog warning of deletion
+    const warningDeletePost = document.createElement('dialog');
+    warningDeletePost.setAttribute('class', 'warning-delete');
+    const paragraphWarning = document.createElement('p');
+    paragraphWarning.setAttribute('class', 'paragraph-warning-delete');
+    paragraphWarning.textContent = 'You are about to delete your post';
+    const paragraphCheck = document.createElement('p');
+    paragraphCheck.setAttribute('class', 'paragraph-check');
+    paragraphCheck.textContent = 'Are you sure?';
+    const btnContinue = document.createElement('button');
+    btnContinue.setAttribute('class', 'btn-continue');
+    btnContinue.textContent = 'Continue';
+    btnContinue.dataset.id = item;
+    const btnCancel = document.createElement('button');
+    btnCancel.setAttribute('class', 'btn-cancel');
+    btnCancel.textContent = 'Cancel';
+
+    warningDeletePost.append(paragraphWarning, paragraphCheck, btnContinue, btnCancel);
     // apends items to div layout for posts
     divUserPost.append(userImagePost, emailUserPost);
-    divLayoutPost.append(divUserPost, inputPost);
+
+    const user = auth.currentUser;
+    if (user.email === obj.email) {
+      divLayoutPost.append(deletePostOutside, warningDeletePost, divUserPost, inputPost);
+      deletePostOutside.addEventListener('click', () => {
+        warningDeletePost.showModal();
+
+        btnContinue.addEventListener('click', (e) => {
+          deletePost(e.target.dataset.id);
+          warningDeletePost.close();
+        });
+
+        btnCancel.addEventListener('click', () => (warningDeletePost.close()));
+      });
+    } else {
+      divLayoutPost.append(divUserPost, inputPost);
+    }
+    
     sectionPosts.append(divLayoutPost);
   };
 
@@ -72,7 +113,8 @@ export const home = () => {
     }
     querySnapshot.forEach((doc) => {
       const post = doc.data();
-      html(post);
+      const postId = doc.id;
+      html(post, postId);
     });
   });
 
@@ -131,6 +173,7 @@ export const home = () => {
 
   inputNewPost.addEventListener('keyup', function () {
     counterCharacters(inputNewPost);
+    errorMessage.textContent = '';
   });
 
   divCancelPost.append(cancelPostButton, cancelPostText);
@@ -184,19 +227,20 @@ export const home = () => {
     const user = auth.currentUser;
     const emailUser = user.email;
 
-    if (inputNewPost.length) {
+    if (!inputNewPost.value) {
+      errorMessage.textContent = 'You haven\'t write anything';
+    } else { 
       savePost(emailUser, inputNewPost.value, hour);
       newPost.close();
       inputNewPost.value = '';
       countParagraph.textContent = '0/200';
-    } else {
-      errorMessage.textContent = 'You haven\'t write anything';
     }
   });
 
   divCancelPost.addEventListener('click', () => {
     newPost.close();
     inputNewPost.value = '';
+    errorMessage.textContent = '';
     countParagraph.textContent = '0/200';
   });
 
