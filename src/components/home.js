@@ -100,11 +100,12 @@ export const home = () => {
     const hour = Date.now();
     const user = auth.currentUser;
     const emailUser = user.email;
+    const like = '';
 
     if (!inputNewPost.value) {
       errorMessage.textContent = 'You haven\'t write anything';
     } else { 
-      savePost(emailUser, inputNewPost.value, hour);
+      savePost(emailUser, inputNewPost.value, hour, like);
       newPost.close();
       inputNewPost.value = '';
       countParagraph.textContent = '0/200';
@@ -159,12 +160,21 @@ export const home = () => {
     editPost.setAttribute('src', './img/edit.png');
     editPost.setAttribute('class', 'edit-post');
     editPost.dataset.id = item;
-    
     const deletePostOutside = document.createElement('img');
     deletePostOutside.setAttribute('src', './img/delete.png');
     deletePostOutside.setAttribute('class', 'delete-post');
     deletePostOutside.dataset.id = item;
-
+    const likePost = document.createElement('img');
+    likePost.setAttribute('class', 'like-post');
+    likePost.src = './img/empty-like.png';
+    const counterLike = document.createElement('p');
+    counterLike.setAttribute('class', 'counter-like');
+    counterLike.textContent = '1';
+    const divLike = document.createElement('div');
+    divLike.setAttribute('class', 'div-like');
+    
+    divLike.append(likePost, counterLike);
+    
     // dialog warning of deletion
     const warningDeletePost = document.createElement('dialog');
     warningDeletePost.setAttribute('class', 'warning-delete');
@@ -247,7 +257,7 @@ export const home = () => {
 
     const user = auth.currentUser;
     if (user.email === obj.email) {
-      divLayoutPost.append(editPost, editPostDialog, deletePostOutside, warningDeletePost, divUserPost, inputPost);
+      divLayoutPost.append(editPost, editPostDialog, deletePostOutside, warningDeletePost, divUserPost, inputPost, divLike);
       deletePostOutside.addEventListener('click', () => {
         warningDeletePost.showModal();
         // function delete
@@ -286,7 +296,7 @@ export const home = () => {
         editPostDialog.close();
       }); 
     } else {
-      divLayoutPost.append(divUserPost, inputPost);
+      divLayoutPost.append(divUserPost, inputPost, divLike);
     }
     
     sectionPosts.append(divLayoutPost);
