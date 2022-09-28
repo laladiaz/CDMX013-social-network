@@ -100,7 +100,7 @@ export const home = () => {
     const hour = Date.now();
     const user = auth.currentUser;
     const emailUser = user.email;
-    const like = '';
+    const like = [];
 
     if (!inputNewPost.value) {
       errorMessage.textContent = 'You haven\'t write anything';
@@ -167,11 +167,13 @@ export const home = () => {
     const likePost = document.createElement('img');
     likePost.setAttribute('class', 'like-post');
     likePost.src = './img/empty-like.png';
+    likePost.dataset.id = item;
     const counterLike = document.createElement('p');
     counterLike.setAttribute('class', 'counter-like');
     counterLike.textContent = '1';
     const divLike = document.createElement('div');
     divLike.setAttribute('class', 'div-like');
+    divLike.dataset.id = item;
     
     divLike.append(likePost, counterLike);
     
@@ -226,6 +228,7 @@ export const home = () => {
     saveEditButton.dataset.id = item;
     const divCancelEditPost = document.createElement('div');
     divCancelEditPost.setAttribute('class', 'cancel-post');
+    divCancelEditPost.dataset.id = item;
     const cancelEditPostBtn = document.createElement('img');
     cancelEditPostBtn.setAttribute('class', 'cancel-post-button');
     cancelEditPostBtn.setAttribute('src', './img/cancel.png');
@@ -292,18 +295,31 @@ export const home = () => {
         errorMessageEditPost.textContent = '';
       });
 
-      divCancelEditPost.addEventListener('click', () => {
+      divCancelEditPost.addEventListener('click', () => { 
         editPostDialog.close();
       }); 
     } else {
       divLayoutPost.append(divUserPost, inputPost, divLike);
     }
+
+    // like the post functions
+    divLike.addEventListener('click', async (e) => {
+      const dataEdit = await getPost(e.target.dataset.id);
+      const postToEdit = dataEdit.data();
+      const arrayEmail = postToEdit.like;
+      const emailUser = user.email;
+
+      if (arrayEmail !== emailUser) {
+        updatePost(e.target.dataset.id, { like: [...arrayEmail, emailUser] });
+      } else {
+        // quita el usuario del array 
+      }
+      
+      // updatePost(e.target.dataset.id, { like: [...arrayEmail, emailUser] });
+    });
     
     sectionPosts.append(divLayoutPost);
   };
-
-  /* const editEveryPost = document.getElementsByClassName('edit-post');
-  console.log(editEveryPost); */
 
   // render posts in home
   onGetPosts((querySnapshot) => {
