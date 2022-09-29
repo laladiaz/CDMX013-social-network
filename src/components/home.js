@@ -308,12 +308,18 @@ export const home = () => {
       const postToEdit = dataEdit.data();
       const arrayEmail = postToEdit.like;
       const emailUser = user.email;
-      const addLike = [...arrayEmail, emailUser];
-      // const removeLike = arrayEmail.filter((mail) => (mail !== emailUser));
-
-      updatePost(e.target.dataset.id, { like: addLike }); 
-
-      // updatePost(e.target.dataset.id, { like: removeLike });
+      
+      if (arrayEmail.length === 0) {
+        updatePost(e.target.dataset.id, { like: [...arrayEmail, emailUser] }); 
+      } else {
+        for (let i = 0; i < arrayEmail.length; i += 1) {
+          if (arrayEmail[i] === emailUser) {
+            updatePost(e.target.dataset.id, { like: arrayEmail.filter((mail) => (mail !== emailUser)) });
+          } else {
+            updatePost(e.target.dataset.id, { like: [...arrayEmail, emailUser] });
+          }
+        }
+      }
     });
     
     sectionPosts.append(divLayoutPost);
