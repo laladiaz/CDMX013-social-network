@@ -344,16 +344,13 @@ export const home = () => {
   const dotIndicator = document.createElement('img');
   dotIndicator.setAttribute('src', './img/dot.png');
   dotIndicator.setAttribute('class', 'dot-indicator');
-  const imageSearchNav = document.createElement('img');
-  imageSearchNav.setAttribute('src', './img/search.png');
-  imageSearchNav.setAttribute('class', 'image-search-nav');
   const imageUserNav = document.createElement('img');
   imageUserNav.setAttribute('src', './img/user.png');
   imageUserNav.setAttribute('class', 'image-profile-nav');
 
   indicatorDiv.append(imageHomeNav, dotIndicator);
 
-  navMenu.append(indicatorDiv, imageSearchNav, imageUserNav);
+  navMenu.append(indicatorDiv, imageUserNav);
 
   onAuthStateChanged(auth, (user) => {
     if (!user) {
