@@ -251,6 +251,11 @@ text-align: center;
     height: 100%;
     overflow: scroll;
 }
+.section-profile-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .nav-menu{
     grid-column: span 3;
@@ -260,7 +265,7 @@ text-align: center;
     background-color: #89599B;
     border-top: solid 3px #343434;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -268,6 +273,7 @@ text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 1rem;
 }
 
 .dot-indicator{
@@ -471,6 +477,13 @@ textarea{
     top: 1.66rem;
     left: 7rem;
 }
+.div-user-profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+}
+
 @media (min-width: 480px) and (max-width: 960px) {
     html {
         font-size: 16px;
