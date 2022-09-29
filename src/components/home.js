@@ -308,14 +308,12 @@ export const home = () => {
       const postToEdit = dataEdit.data();
       const arrayEmail = postToEdit.like;
       const emailUser = user.email;
+      const addLike = [...arrayEmail, emailUser];
+      // const removeLike = arrayEmail.filter((mail) => (mail !== emailUser));
 
-      if (arrayEmail !== emailUser) {
-        updatePost(e.target.dataset.id, { like: [...arrayEmail, emailUser] });
-      } else {
-        // quita el usuario del array 
-      }
-      
-      // updatePost(e.target.dataset.id, { like: [...arrayEmail, emailUser] });
+      updatePost(e.target.dataset.id, { like: addLike }); 
+
+      // updatePost(e.target.dataset.id, { like: removeLike });
     });
     
     sectionPosts.append(divLayoutPost);
