@@ -100,11 +100,12 @@ export const home = () => {
     const hour = Date.now();
     const user = auth.currentUser;
     const emailUser = user.email;
+    const like = [];
 
     if (!inputNewPost.value) {
       errorMessage.textContent = 'You haven\'t write anything';
     } else { 
-      savePost(emailUser, inputNewPost.value, hour);
+      savePost(emailUser, inputNewPost.value, hour, like);
       newPost.close();
       inputNewPost.value = '';
       countParagraph.textContent = '0/200';
@@ -159,12 +160,23 @@ export const home = () => {
     editPost.setAttribute('src', './img/edit.png');
     editPost.setAttribute('class', 'edit-post');
     editPost.dataset.id = item;
-    
     const deletePostOutside = document.createElement('img');
     deletePostOutside.setAttribute('src', './img/delete.png');
     deletePostOutside.setAttribute('class', 'delete-post');
     deletePostOutside.dataset.id = item;
-
+    const likePost = document.createElement('img');
+    likePost.setAttribute('class', 'like-post');
+    likePost.src = './img/empty-like.png';
+    likePost.dataset.id = item;
+    const counterLike = document.createElement('p');
+    counterLike.setAttribute('class', 'counter-like');
+    counterLike.textContent = '1';
+    const divLike = document.createElement('div');
+    divLike.setAttribute('class', 'div-like');
+    divLike.dataset.id = item;
+    
+    divLike.append(likePost, counterLike);
+    
     // dialog warning of deletion
     const warningDeletePost = document.createElement('dialog');
     warningDeletePost.setAttribute('class', 'warning-delete');
@@ -216,6 +228,7 @@ export const home = () => {
     saveEditButton.dataset.id = item;
     const divCancelEditPost = document.createElement('div');
     divCancelEditPost.setAttribute('class', 'cancel-post');
+    divCancelEditPost.dataset.id = item;
     const cancelEditPostBtn = document.createElement('img');
     cancelEditPostBtn.setAttribute('class', 'cancel-post-button');
     cancelEditPostBtn.setAttribute('src', './img/cancel.png');
@@ -247,7 +260,7 @@ export const home = () => {
 
     const user = auth.currentUser;
     if (user.email === obj.email) {
-      divLayoutPost.append(editPost, editPostDialog, deletePostOutside, warningDeletePost, divUserPost, inputPost);
+      divLayoutPost.append(editPost, editPostDialog, deletePostOutside, warningDeletePost, divUserPost, inputPost, divLike);
       deletePostOutside.addEventListener('click', () => {
         warningDeletePost.showModal();
         // function delete
@@ -282,18 +295,35 @@ export const home = () => {
         errorMessageEditPost.textContent = '';
       });
 
-      divCancelEditPost.addEventListener('click', () => {
+      divCancelEditPost.addEventListener('click', () => { 
         editPostDialog.close();
       }); 
     } else {
-      divLayoutPost.append(divUserPost, inputPost);
+      divLayoutPost.append(divUserPost, inputPost, divLike);
     }
+
+    // like the post functions
+    divLike.addEventListener('click', async (e) => {
+      const dataEdit = await getPost(e.target.dataset.id);
+      const postToEdit = dataEdit.data();
+      const arrayEmail = postToEdit.like;
+      const emailUser = user.email;
+      
+      if (arrayEmail.length === 0) {
+        updatePost(e.target.dataset.id, { like: [...arrayEmail, emailUser] }); 
+      } else {
+        for (let i = 0; i < arrayEmail.length; i += 1) {
+          if (arrayEmail[i] === emailUser) {
+            updatePost(e.target.dataset.id, { like: arrayEmail.filter((mail) => (mail !== emailUser)) });
+          } else {
+            updatePost(e.target.dataset.id, { like: [...arrayEmail, emailUser] });
+          }
+        }
+      }
+    });
     
     sectionPosts.append(divLayoutPost);
   };
-
-  /* const editEveryPost = document.getElementsByClassName('edit-post');
-  console.log(editEveryPost); */
 
   // render posts in home
   onGetPosts((querySnapshot) => {
@@ -318,16 +348,13 @@ export const home = () => {
   const dotIndicator = document.createElement('img');
   dotIndicator.setAttribute('src', './img/dot.png');
   dotIndicator.setAttribute('class', 'dot-indicator');
-  const imageSearchNav = document.createElement('img');
-  imageSearchNav.setAttribute('src', './img/search.png');
-  imageSearchNav.setAttribute('class', 'image-search-nav');
   const imageUserNav = document.createElement('img');
   imageUserNav.setAttribute('src', './img/user.png');
   imageUserNav.setAttribute('class', 'image-profile-nav');
 
   indicatorDiv.append(imageHomeNav, dotIndicator);
 
-  navMenu.append(indicatorDiv, imageSearchNav, imageUserNav);
+  navMenu.append(indicatorDiv, imageUserNav);
 
   onAuthStateChanged(auth, (user) => {
     if (!user) {
