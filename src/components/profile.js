@@ -1,7 +1,10 @@
 /* eslint-disable import/no-unresolved */
-import { signOut } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+import { signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
 import { auth } from '../lib/auth.js';
+import {
+  onGetPosts, getPost, updatePost, deletePost, 
+} from '../lib/firestore.js';
 
 export const profile = () => {
   const sectionProfile = document.createElement('section');
@@ -96,9 +99,6 @@ export const profile = () => {
   const imageHomeNav = document.createElement('img');
   imageHomeNav.setAttribute('src', './img/home.png');
   imageHomeNav.setAttribute('class', 'image-home-nav');
-  const imageSearchNav = document.createElement('img');
-  imageSearchNav.setAttribute('src', './img/search.png');
-  imageSearchNav.setAttribute('class', 'image-search-nav');
   const imageUserNav = document.createElement('img');
   imageUserNav.setAttribute('src', './img/user.png');
   imageUserNav.setAttribute('class', 'image-profile-nav');
@@ -111,9 +111,196 @@ export const profile = () => {
   
   indicatorDiv.append(imageUserNav, dotIndicator);
   
-  navMenu.append(imageHomeNav, imageSearchNav, indicatorDiv);
+  navMenu.append(imageHomeNav, indicatorDiv);
+
+  // user div
+  const divProfileUser = document.createElement('div');
+  divProfileUser.setAttribute('class', 'div-user-profile');
+  const userImage = document.createElement('img');
+  userImage.setAttribute('class', 'user-image-profile');
+  userImage.setAttribute('src', './img/user-image.png');
+  const emailUser = document.createElement('p');
+  emailUser.setAttribute('class', 'email-user-profile');
+  emailUser.textContent = 'profile email';
+
+  divProfileUser.append(userImage, emailUser);
+
+  // post div
+  const sectionPosts = document.createElement('section');
+  const html = (obj, item) => {
+    const divLayoutPost = document.createElement('div');
+    divLayoutPost.setAttribute('class', 'div-layout-post');
+    const divUserPost = document.createElement('div');
+    divUserPost.setAttribute('class', 'div-user-post');
+    const userImagePost = document.createElement('img');
+    userImagePost.setAttribute('class', 'user-image');
+    userImagePost.setAttribute('src', './img/user-image.png');
+    const emailUserPost = document.createElement('p');
+    emailUserPost.textContent = obj.email;
+    emailUserPost.setAttribute('class', 'email-user-post');
+    const inputPost = document.createElement('p');
+    inputPost.setAttribute('class', 'input-post');
+    inputPost.readOnly = true;
+    inputPost.textContent = obj.text;
+    const editPost = document.createElement('img');
+    editPost.setAttribute('src', './img/edit.png');
+    editPost.setAttribute('class', 'edit-post');
+    editPost.dataset.id = item;
+
+    const deletePostOutside = document.createElement('img');
+    deletePostOutside.setAttribute('src', './img/delete.png');
+    deletePostOutside.setAttribute('class', 'delete-post');
+    deletePostOutside.dataset.id = item;
+
+    // dialog warning of deletion
+    const warningDeletePost = document.createElement('dialog');
+    warningDeletePost.setAttribute('class', 'warning-delete');
+    const paragraphWarning = document.createElement('p');
+    paragraphWarning.setAttribute('class', 'paragraph-warning-delete');
+    paragraphWarning.textContent = 'You are about to delete your post';
+    const paragraphCheck = document.createElement('p');
+    paragraphCheck.setAttribute('class', 'paragraph-check');
+    paragraphCheck.textContent = 'Are you sure?';
+    const btnContinue = document.createElement('button');
+    btnContinue.setAttribute('class', 'btn-continue');
+    btnContinue.textContent = 'Continue';
+    btnContinue.dataset.id = item;
+    const btnCancel = document.createElement('button');
+    btnCancel.setAttribute('class', 'btn-cancel');
+    btnCancel.textContent = 'Cancel';
+
+    // modal to edit post
+    const editPostDialog = document.createElement('dialog');
+    editPostDialog.setAttribute('class', 'new-post');
+    const divUserEditPost = document.createElement('div');
+    divUserEditPost.setAttribute('class', 'div-user-new-post');
+    const userImageEditPost = document.createElement('img');
+    userImageEditPost.setAttribute('class', 'user-image');
+    userImageEditPost.setAttribute('src', './img/user-image.png');
+    const emailUserEditPost = document.createElement('p');
+    emailUserEditPost.setAttribute('class', 'email-user-new-post');
+    const inputEditPost = document.createElement('textarea');
+    inputEditPost.setAttribute('class', 'input-new-post');
+    inputEditPost.setAttribute('cols', '20');
+    inputEditPost.setAttribute('rows', '20');
+    inputEditPost.setAttribute('maxlength', '200');
+    inputEditPost.spellcheck = true;
+    inputEditPost.setAttribute('placeholder', 'share something');
+    const countParagraphEditPost = document.createElement('p');
+    countParagraphEditPost.setAttribute('class', 'count-paragraph');
+    countParagraphEditPost.textContent = `${obj.text.length}/200`;
+    const errorMessageEditPost = document.createElement('p');
+    errorMessageEditPost.setAttribute('class', 'error-post');
+    const divSaveEditPost = document.createElement('div');
+    divSaveEditPost.setAttribute('class', 'save-post-div');
+    divSaveEditPost.dataset.id = item;
+    const saveEditButton = document.createElement('img');
+    saveEditButton.setAttribute('class', 'save-post-button');
+    saveEditButton.setAttribute('src', './img/save-new.png');
+    const saveEditText = document.createElement('p');
+    saveEditText.setAttribute('class', 'save-post-text');
+    saveEditText.textContent = 'save';
+    saveEditButton.dataset.id = item;
+    const divCancelEditPost = document.createElement('div');
+    divCancelEditPost.setAttribute('class', 'cancel-post');
+    const cancelEditPostBtn = document.createElement('img');
+    cancelEditPostBtn.setAttribute('class', 'cancel-post-button');
+    cancelEditPostBtn.setAttribute('src', './img/cancel.png');
+    const cancelEditPostText = document.createElement('p');
+    cancelEditPostText.setAttribute('class', 'cancel-post-text');
+    cancelEditPostText.textContent = 'cancel';
+    const divButtonsEditPost = document.createElement('div');
+    divButtonsEditPost.setAttribute('class', 'div-buttons-new-post');
+
+    const counterCharactersEditPost = (text) => {
+      const maxLength = 200;
+      const strLength = text.value.length;
+      if (strLength > maxLength) {
+        countParagraphEditPost.textContent = `${strLength}/${maxLength}`;
+      } else {
+        countParagraphEditPost.textContent = `${strLength}/${maxLength}`;
+      }
+    };
+
+    divCancelEditPost.append(cancelEditPostBtn, cancelEditPostText);
+    divUserEditPost.append(userImageEditPost, emailUserEditPost);
+    divSaveEditPost.append(saveEditButton, saveEditText);
+    divButtonsEditPost.append(divCancelEditPost, divSaveEditPost);
+    editPostDialog.append(divUserEditPost, inputEditPost, countParagraphEditPost, errorMessageEditPost, divButtonsEditPost);
+    
+    warningDeletePost.append(paragraphWarning, paragraphCheck, btnContinue, btnCancel);
+
+    divUserPost.append(userImagePost, emailUserPost);
+
+    divLayoutPost.append(editPost, editPostDialog, deletePostOutside, warningDeletePost, divUserPost, inputPost);
+
+    deletePostOutside.addEventListener('click', () => {
+      warningDeletePost.showModal();
+      // function delete
+      btnContinue.addEventListener('click', (e) => {
+        deletePost(e.target.dataset.id);
+        warningDeletePost.close();
+      });
+
+      btnCancel.addEventListener('click', () => (warningDeletePost.close()));
+    });
+    
+    // function edit
+    editPost.addEventListener('click', async (e) => {
+      editPostDialog.showModal();
+      const dataEdit = await getPost(e.target.dataset.id);
+      const postToEdit = dataEdit.data();
+      inputEditPost.textContent = postToEdit.text;
+      emailUserEditPost.textContent = postToEdit.email;
+    });
+
+    divSaveEditPost.addEventListener('click', (e) => {
+      if (inputEditPost.value) {
+        updatePost(e.target.dataset.id, { text: inputEditPost.value });
+        editPostDialog.close();
+      } else {
+        errorMessageEditPost.textContent = 'Please write something';
+      }
+    }); 
+
+    inputEditPost.addEventListener('keyup', function () {
+      counterCharactersEditPost(inputEditPost);
+      errorMessageEditPost.textContent = '';
+    });
+
+    divCancelEditPost.addEventListener('click', () => {
+      editPostDialog.close();
+    });
+
+    sectionPosts.append(divLayoutPost);
+  };
+
+  onGetPosts((querySnapshot) => {
+    while (sectionPosts.firstChild) {
+      sectionPosts.removeChild(sectionPosts.firstChild);
+    }
+    querySnapshot.forEach((doc) => {
+      const user = auth.currentUser;
+      const post = doc.data();
+      const postId = doc.id;
+      if (user.email === post.email) {
+        html(post, postId);
+      }
+    });
+  });
+  sectionProfileMain.append(divProfileUser, sectionPosts);
+
+  // posts user
   
   mainProfile.append(dialogSetting, sectionProfileMain);
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      onNavigate('/');
+    } else {
+      emailUser.textContent = user.email;
+    }
+  });
   
   imageHomeNav.addEventListener('click', () => {
     onNavigate('/home');
