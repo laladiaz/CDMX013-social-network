@@ -170,10 +170,17 @@ export const home = () => {
     likePost.dataset.id = item;
     const counterLike = document.createElement('p');
     counterLike.setAttribute('class', 'counter-like');
-    counterLike.textContent = '1';
+    counterLike.textContent = obj.like.length;
     const divLike = document.createElement('div');
     divLike.setAttribute('class', 'div-like');
     divLike.dataset.id = item;
+
+    const userLoged = auth.currentUser;
+    for (let i = 0; i < obj.like.length; i += 1) {
+      if (obj.like[i] === userLoged.email) {
+        likePost.src = './img/like.png';
+      }
+    }
     
     divLike.append(likePost, counterLike);
     
