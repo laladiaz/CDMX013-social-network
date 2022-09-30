@@ -166,11 +166,11 @@ export const home = () => {
     deletePostOutside.dataset.id = item;
     const likePost = document.createElement('img');
     likePost.setAttribute('class', 'like-post');
-    likePost.src = './img/empty-like.png';
+    likePost.src = './img/like.png';
     likePost.dataset.id = item;
     const counterLike = document.createElement('p');
     counterLike.setAttribute('class', 'counter-like');
-    counterLike.textContent = '1';
+    counterLike.textContent = obj.like.length;
     const divLike = document.createElement('div');
     divLike.setAttribute('class', 'div-like');
     divLike.dataset.id = item;
