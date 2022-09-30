@@ -166,7 +166,7 @@ export const home = () => {
     deletePostOutside.dataset.id = item;
     const likePost = document.createElement('img');
     likePost.setAttribute('class', 'like-post');
-    likePost.src = './img/like.png';
+    likePost.src = './img/empty-like.png';
     likePost.dataset.id = item;
     const counterLike = document.createElement('p');
     counterLike.setAttribute('class', 'counter-like');
@@ -174,6 +174,13 @@ export const home = () => {
     const divLike = document.createElement('div');
     divLike.setAttribute('class', 'div-like');
     divLike.dataset.id = item;
+
+    const userLoged = auth.currentUser;
+    for (let i = 0; i < obj.like.length; i += 1) {
+      if (obj.like[i] === userLoged.email) {
+        likePost.src = './img/like.png';
+      }
+    }
     
     divLike.append(likePost, counterLike);
     
