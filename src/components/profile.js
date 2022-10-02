@@ -47,24 +47,14 @@ export const profile = () => {
   const logoutTitle = document.createElement('p');
   logoutTitle.setAttribute('class', 'logout-title');
   logoutTitle.textContent = 'Log Out';
-  // edit profile
-  const divEditProfile = document.createElement('div');
-  divEditProfile.setAttribute('class', 'div-edit-profile');
-  const editImg = document.createElement('img');
-  editImg.setAttribute('src', './img/edit.png');
-  editImg.setAttribute('class', 'edit-img');
-  const editTitle = document.createElement('p');
-  editTitle.setAttribute('class', 'edit-title');
-  editTitle.textContent = 'Edit';
   const closeSettings = document.createElement('p');
   closeSettings.setAttribute('class', 'close-settings');
   closeSettings.textContent = 'X';
   
   // appends items to div
   divLogoutImg.append(logoutImg, logoutTitle);
-  divEditProfile.append(editImg, editTitle);
   // appends divs to div settings
-  dialogSetting.append(divEditProfile, divLogoutImg, closeSettings);
+  dialogSetting.append(divLogoutImg, closeSettings);
 
   divProfileBody.addEventListener('click', () => {
     dialogSetting.show();
@@ -127,6 +117,7 @@ export const profile = () => {
 
   // post div
   const sectionPosts = document.createElement('section');
+  sectionPosts.setAttribute('class', 'section-posts');
   const html = (obj, item) => {
     const divLayoutPost = document.createElement('div');
     divLayoutPost.setAttribute('class', 'div-layout-post');
