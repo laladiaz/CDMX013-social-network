@@ -2,7 +2,7 @@ import {
   // eslint-disable-next-line max-len
   getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword,
 // eslint-disable-next-line import/no-unresolved
-} from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+} from './imports.js';
 import { app } from './config.js';
 
 export const auth = getAuth(app);
