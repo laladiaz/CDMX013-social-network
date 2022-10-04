@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import { signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+import { signOut, onAuthStateChanged } from '../lib/imports.js';
 import { onNavigate } from '../main.js';
 import { auth } from '../lib/auth.js';
 import {

@@ -1,5 +1,4 @@
 import { onNavigate } from '../main.js';
-// import { app } from '../lib/config.js';
 import { createUser, popupGoogle } from '../lib/auth.js';
 
 export const signup = () => {

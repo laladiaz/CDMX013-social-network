@@ -1,13 +1,13 @@
 import {
   // eslint-disable-next-line max-len
-  getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword,
+  getAuth, createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword, provider,
 // eslint-disable-next-line import/no-unresolved
-} from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+} from './imports.js';
 import { app } from './config.js';
 
 export const auth = getAuth(app);
 
-export const provider = new GoogleAuthProvider();
+// export const provider = new GoogleAuthProvider();
 
 // eslint-disable-next-line max-len
 export const createUser = (email, password) => createUserWithEmailAndPassword(auth, email, password);
