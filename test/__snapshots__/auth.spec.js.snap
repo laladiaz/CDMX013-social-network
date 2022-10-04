@@ -1,0 +1,312 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`home tests snapshot from home 1`] = `
+<section
+  class="section"
+>
+  <header
+    class="header-home"
+  >
+    <div
+      class="div-logo"
+    >
+      <img
+        class="logoB-header"
+        src="./img/Logo-B.png"
+      />
+      <h2
+        class="title-header"
+      >
+        HOME
+      </h2>
+    </div>
+    <div
+      class="div-create-post"
+    >
+      <img
+        class="image-create-post"
+        src="./img/new-post.png"
+      />
+      <p
+        class="title-create-post"
+      >
+        share something
+      </p>
+    </div>
+  </header>
+  <main
+    class="home-main"
+  >
+    <section
+      class="section-posts"
+    />
+    <dialog
+      class="new-post"
+    >
+      <div
+        class="div-user-new-post"
+      >
+        <img
+          class="user-image"
+          src="./img/user-image.png"
+        />
+        <p
+          class="email-user-new-post"
+        />
+      </div>
+      <textarea
+        class="input-new-post"
+        cols="20"
+        maxlength="200"
+        placeholder="share something"
+        rows="20"
+      />
+      <p
+        class="count-paragraph"
+      >
+        0/200
+      </p>
+      <p
+        class="error-post"
+      />
+      <div
+        class="div-buttons-new-post"
+      >
+        <div
+          class="cancel-post"
+        >
+          <img
+            class="cancel-post-button"
+            src="./img/cancel.png"
+          />
+          <p
+            class="cancel-post-text"
+          >
+            cancel
+          </p>
+        </div>
+        <div
+          class="save-post-div"
+        >
+          <img
+            class="save-post-button"
+            src="./img/save-new.png"
+          />
+          <p
+            class="save-post-text"
+          >
+            save
+          </p>
+        </div>
+      </div>
+    </dialog>
+  </main>
+  <nav
+    class="nav-menu"
+  >
+    <div
+      class="indicator-div"
+    >
+      <img
+        class="image-home-nav"
+        src="./img/home.png"
+      />
+      <img
+        class="dot-indicator"
+        src="./img/dot.png"
+      />
+    </div>
+    <img
+      class="image-profile-nav"
+      src="./img/user.png"
+    />
+  </nav>
+</section>
+`;
+
+exports[`login tests snapshot from signup 1`] = `
+<section
+  class="section"
+>
+  <div
+    class="header-label"
+  >
+    Log In
+  </div>
+  <header
+    class="login-header"
+  >
+    <img
+      class="logo-booknet"
+      src="./img/Logo-BookNet.png"
+    />
+  </header>
+  <main
+    class="login-main"
+  >
+    <div
+      class="register-buttons-div"
+    >
+      <button
+        class="modal-button"
+        id="backButtonLogin"
+      >
+        Back
+      </button>
+      <button
+        id="email-button"
+      />
+      <button
+        id="google-button"
+      />
+    </div>
+    <dialog
+      class="login-modal"
+    >
+      <form
+        id="form-login-modal"
+      >
+        <input
+          class="login-input"
+          placeholder="email"
+          type="email"
+        />
+        <input
+          class="login-input"
+          placeholder="password"
+          type="password"
+        />
+        <p
+          class="error-paragraph"
+        />
+        <button
+          class="modal-button"
+          id="cancel-login-modal"
+        >
+          Back
+        </button>
+        <button
+          class="modal-button"
+          id="submit-login-modal"
+        >
+          Enter
+        </button>
+      </form>
+    </dialog>
+  </main>
+</section>
+`;
+
+exports[`signup tests snapshot from signup 1`] = `
+<section
+  class="section"
+>
+  <div
+    class="header-label"
+  >
+    Sign Up
+  </div>
+  <header
+    class="register-header"
+  >
+    <img
+      class="logo-booknet"
+      src="./img/Logo-BookNet.png"
+    />
+  </header>
+  <main
+    class="register-main"
+  >
+    <div
+      class="register-buttons-div"
+    >
+      <button
+        class="modal-button"
+        id="backButtonSignup"
+      >
+        Back
+      </button>
+      <p
+        class="paragraph-terms"
+      >
+        By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use.
+      </p>
+      <button
+        id="email-button"
+      />
+      <button
+        id="google-button"
+      />
+    </div>
+    <dialog
+      class="signup-modal"
+    >
+      <form
+        id="form-signup-modal"
+      >
+        <input
+          class="signup-input"
+          placeholder="email"
+          type="email"
+        />
+        <input
+          class="signup-input"
+          placeholder="password"
+          type="password"
+        />
+        <p
+          class="error-paragraph"
+        />
+        <button
+          class="modal-button"
+          id="cancel-signup-modal"
+        >
+          Back
+        </button>
+        <button
+          class="modal-button"
+          id="submit-signup-modal"
+        >
+          Enter
+        </button>
+      </form>
+    </dialog>
+  </main>
+</section>
+`;
+
+exports[`welcome tests snapshot from welcome 1`] = `
+<section
+  class="section"
+>
+  <header
+    class="welcome-header"
+  >
+    <img
+      class="logo-booknet"
+      src="./img/Logo-BookNet.png"
+    />
+  </header>
+  <main
+    class="register-main"
+  >
+    <button
+      class="register-button"
+      id="log-in"
+    >
+      Log In
+    </button>
+    <button
+      class="register-button"
+      id="sign-up"
+    >
+      Sign up
+    </button>
+  </main>
+  <footer
+    class="footer-welcome"
+  >
+    ©️2022 Jean y Lala
+  </footer>
+</section>
+`;

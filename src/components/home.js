@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+import { onAuthStateChanged } from '../lib/imports.js';
 import { auth } from '../lib/auth.js';
 import { onNavigate } from '../main.js';
 import {

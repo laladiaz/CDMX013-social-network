@@ -1,7 +1,6 @@
 import {
   getFirestore, collection, addDoc, onSnapshot, query, orderBy, deleteDoc, doc, getDoc, updateDoc,
-// eslint-disable-next-line import/no-unresolved
-} from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js';
+} from './imports.js';
 import { app } from './config.js';
 
 export const db = getFirestore(app);
