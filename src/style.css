@@ -107,9 +107,6 @@ body {
     margin-top: 1rem;
     box-shadow: 1px 1px 1px grey;
 }
-#email-button:hover, #google-button:hover{
-    cursor: pointer;
-}
 
 #google-button{
     background-image: url(./img/btn_google.png);
@@ -123,6 +120,10 @@ body {
     background-size: 100% ;
   background-repeat: no-repeat;
   height: 29px;
+}
+
+#email-button:hover, #google-button:hover{
+    cursor: pointer;
 }
 
 .login-modal, .signup-modal {
@@ -677,7 +678,7 @@ textarea{
     .close-settings{
         font-size: 14px;
         top: -0.4rem;
-        left: 4rem;
+        left: 5rem;
     } 
     .user-image{
         width: 3.8rem;
@@ -686,10 +687,11 @@ textarea{
         justify-content: flex-start;
     }
     
-    .email-user-new-post, .save-post-text, .cancel-post-text{
+    .save-post-text, .cancel-post-text{
         font-size: 14px;
     }
     .email-user-new-post {
+        font-size: 18px;
         margin-left: 0.5rem;
     }
     
@@ -707,9 +709,6 @@ textarea{
     textarea{
         font-size: 16px;
     }
-    .email-user-new-post {
-        font-size: 18px;
-    }
     .div-layout-post{
         width: 60vw;
     }
@@ -720,9 +719,6 @@ textarea{
         left: 35.4rem;
         top: 13.8rem;
         width: 9vh;
-    }
-    .close-settings{
-        left: 5rem;
     }
     .delete-post, .edit-post{
         width: 1.7rem;
@@ -788,7 +784,7 @@ textarea{
             border-top: none;
             border-right: solid 3px #343434;
             flex-flow: column;
-            justify-content: center;
+            justify-content: space-evenly;
         }
         .image-search-nav{
             margin-top: 10vh;
@@ -846,6 +842,8 @@ textarea{
         }
         .delete-post{
             width: 2rem;
+            left: 13.5rem;
+            bottom: 1.6rem;
         }
         .input-post{
             width: 30vh;
@@ -894,14 +892,7 @@ textarea{
             left: 11rem;
             top: 0.7rem
         }
-        .delete-post{
-            left: 13.5rem;
-            bottom: 1.6rem;
-        }
         .warning-delete{
             left: 40%;
-        }
-        .nav-menu{
-            justify-content: space-evenly;
         }
 }
