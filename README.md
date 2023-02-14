@@ -1,5 +1,48 @@
-# Deployment with firebase
-https://booknet-99f48.web.app/
+# Booknet - A book club wherever you are
+responsive: smartphone, tablet and desktop.
+
+## The app
+
+[Booknet](https://booknet-social-network.web.app)
+
+This app is a social network built as a book club, where users can post about their book recommendations, favorite phrases
+and any other information book related. Users can read the post of other users and like their posts, and if they want 
+they can update or delete a post of their own. 
+
+Users can sign up with a google account or with an email of choice and can access the app using either a tablet, a 
+smartphone or a desktop, as all three are supported.
+
+## Designing the app
+
+The first thing to be thought about was the theme. Brainstorming was done and after it, a book club was determined to be 
+the best idea. And because it was a book club on the web, the name "Booknet" was a natural choice.
+
+From the guidelines given, a low-fidelity prototype was drawn, so that the components required could be known
+for the app.
+
+<image src="src/img/lo-fi1.JPG" width=40% height=40%>
+<image src="src/img/lo-fi2.JPG" width=40% height=40%>
+
+The app, being conceived as a single-page application (SPA), was known we would need many pages:
+
+* Welcome page
+* Sign up page
+* Login page
+* Home page
+* Profile page
+
+Then, a palette of colors was chosen using the website coolors.co. Different shades of one color would avoid distractions from the information, but still, make it beautiful and harmonious.
+
+The search for the icons and logo was successful and thought that two shades of yellow would be appropriate for the app.
+
+The high-fidelity prototype was, then, done using Figma:
+[Figma Prototype](https://www.figma.com/proto/vl05qbt1yp4rT6pi01vtch/BookNet?node-id=10%3A3&scaling=scale-down&page-id=0%3A1&starting-point-node-id=10%3A3&show-proto-sidebar=1)
+
+The app was built using JavaScript vanilla, HTML, CCS and Firebase as BaaS, among other technologies.
+
+If you want to see the result, you can visit the URL: https://booknet-social-network.web.app
+
+The guidelines given:
 
 # Creando una Red Social
 
