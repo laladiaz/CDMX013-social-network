@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "booknet-social-network",
     "public": "src",
     "ignore": [
       "firebase.json",
