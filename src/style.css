@@ -327,7 +327,7 @@ text-align: center;
     height: 2rem; 
 }
 .logout-title, .edit-title{
-     font-size: 9.5px;
+    font-size: 9.5px;
     color: white; 
 }
 .close-settings{
@@ -621,7 +621,8 @@ textarea{
         margin-right: 10%;
     }
     .input-post{
-        margin-left: 9rem;
+        margin-left: 2rem;
+        width: 40vw;
     }
     
     .image-create-post, .image-settings-profile {
@@ -673,12 +674,12 @@ textarea{
         height: 2.5rem; 
     }
     .logout-title, .edit-title{
-         font-size: 14px;
+        font-size: 14px;
     }
     .close-settings{
         font-size: 14px;
         top: -0.4rem;
-        left: 5rem;
+        left: 4.5rem;
     } 
     .user-image{
         width: 3.8rem;
@@ -725,7 +726,7 @@ textarea{
     }
 
     .like-post{
-        width: 1.7rem;
+        width: 2.5rem;
         
     }
     .counter-like{
