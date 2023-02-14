@@ -19,7 +19,7 @@ export const welcome = () => {
 
   // main of welcome
   const mainWelcome = document.createElement('main');
-  mainWelcome.setAttribute('class', 'register-main');
+  mainWelcome.setAttribute('class', 'welcome-main');
 
   // buttons for register and login
   const loginButton = document.createElement('button');
