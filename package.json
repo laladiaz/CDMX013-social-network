@@ -3,7 +3,7 @@
   "jest":{
     "testEnvironment": "jsdom"
   },
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Social Network @ Laboratoria",
   "main": "src/index.html",
   "keywords": [
