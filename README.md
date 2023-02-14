@@ -20,8 +20,7 @@ the best idea. And because it was a book club on the web, the name "Booknet" was
 From the guidelines given, a low-fidelity prototype was drawn, so that the components required could be known
 for the app.
 
-<image src="src/img/lo-fi1.JPG" width=40% height=40%>
-<image src="src/img/lo-fi2.JPG" width=40% height=40%>
+<image src="src/img/lo-fi1.JPG" width=40% height=40%> <image src="src/img/lo-fi2.JPG" width=30% height=30%>
 
 The app, being conceived as a single-page application (SPA), was known we would need many pages:
 
@@ -36,6 +35,7 @@ Then, a palette of colors was chosen using the website coolors.co. Different sha
 The search for the icons and logo was successful and thought that two shades of yellow would be appropriate for the app.
 
 The high-fidelity prototype was, then, done using Figma:
+
 [Figma Prototype](https://www.figma.com/proto/vl05qbt1yp4rT6pi01vtch/BookNet?node-id=10%3A3&scaling=scale-down&page-id=0%3A1&starting-point-node-id=10%3A3&show-proto-sidebar=1)
 
 The app was built using JavaScript vanilla, HTML, CCS and Firebase as BaaS, among other technologies.
