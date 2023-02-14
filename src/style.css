@@ -37,7 +37,7 @@ body {
 }
 
 
-.register-main, .login-main {
+.welcome-main, .register-main, .login-main {
     grid-column: span 3;
     display: flex;
     align-items: flex-start;
@@ -528,7 +528,7 @@ textarea{
         justify-content: center;
     }
     
-    .register-main, .login-main {
+    .welcome-main, .register-main, .login-main {
         grid-column: span 2;
         grid-row: span 4;
         flex-direction: column;
@@ -747,13 +747,18 @@ textarea{
             align-items: center;
             justify-content: center;
         }
-        .register-main, .login-main{
+        .welcome-header{
+            grid-column: span 2;
+        }
+        .welcome-main, .register-main, .login-main{
             grid-column: span 1;
             grid-row: span 5;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+        }
+        .register-main, .login-main{
+            align-items: center;
         }
         .register-button{
             width: 40%;
